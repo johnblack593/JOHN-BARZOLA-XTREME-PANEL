@@ -79,50 +79,108 @@ function Show-LoginWindow {
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="Chris Extreme Panel - Acceso Seguro" 
-    Height="420" Width="400"
+    Height="450" Width="420"
     WindowStartupLocation="CenterScreen"
-    Background="#0d1117"
+    Background="Transparent"
     ResizeMode="NoResize"
     WindowStyle="None"
     AllowsTransparency="True">
     
-    <Border Background="#0d1117" CornerRadius="10" BorderBrush="#30363d" BorderThickness="1">
+    <Border CornerRadius="12" BorderThickness="1">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0a0e14" Offset="0"/>
+                <GradientStop Color="#111922" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1e3a5f" Offset="0"/>
+                <GradientStop Color="#00f5ff" Offset="0.5"/>
+                <GradientStop Color="#1e3a5f" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Border Grid.Row="0" Background="#161b22" CornerRadius="10,10,0,0">
+            <!-- HEADER -->
+            <Border Grid.Row="0" CornerRadius="12,12,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#0a0e14" Offset="0"/>
+                        <GradientStop Color="#0d1520" Offset="0.5"/>
+                        <GradientStop Color="#0a0e14" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Grid>
-                    <TextBlock Text="ACCESO SEGURO" FontSize="14" FontWeight="Bold" 
-                               Foreground="#58a6ff" VerticalAlignment="Center" Margin="15,0"/>
-                    <Button Name="btnClose" Content="X" HorizontalAlignment="Right" 
-                            Background="Transparent" Foreground="#8b949e" BorderThickness="0"
-                            Width="40" Height="40" FontSize="14" Cursor="Hand"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
+                        <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="ACCESO SEGURO" FontSize="14" FontWeight="Bold" Foreground="#00f5ff" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Name="btnClose" Content="&#xE711;" FontFamily="Segoe MDL2 Assets" 
+                            HorizontalAlignment="Right" Background="Transparent" 
+                            Foreground="#6b8fa3" BorderThickness="0"
+                            Width="45" Height="45" FontSize="12" Cursor="Hand"/>
                 </Grid>
             </Border>
             
-            <StackPanel Grid.Row="1" Margin="30" VerticalAlignment="Center">
-                <TextBlock Text="CHRIS EXTREME" FontSize="24" FontWeight="Bold" 
-                           Foreground="#58a6ff" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                <TextBlock Text="PANEL" FontSize="14" FontWeight="Bold"
-                           Foreground="#8b949e" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+            <!-- CONTENIDO -->
+            <StackPanel Grid.Row="1" Margin="35" VerticalAlignment="Center">
+                <!-- LOGO -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="&#xE950;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="36" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock Text="CHRIS EXTREME" FontSize="26" FontWeight="Bold" Foreground="#00f5ff"/>
+                        <TextBlock Text="PANEL v12.0" FontSize="12" FontWeight="Medium" Foreground="#6b8fa3"/>
+                    </StackPanel>
+                </StackPanel>
                 
-                <TextBlock Text="Usuario:" Foreground="#c9d1d9" Margin="0,0,0,5"/>
-                <TextBox Name="txtUser" Height="35" Background="#21262d" Foreground="#c9d1d9" 
-                         BorderBrush="#30363d" Padding="10,8" FontSize="14"/>
+                <!-- Separador -->
+                <Border Height="1" Margin="0,15,0,25">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="Transparent" Offset="0"/>
+                            <GradientStop Color="#1e3a5f" Offset="0.2"/>
+                            <GradientStop Color="#00f5ff" Offset="0.5"/>
+                            <GradientStop Color="#1e3a5f" Offset="0.8"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
                 
-                <TextBlock Text="Contrasena:" Foreground="#c9d1d9" Margin="0,15,0,5"/>
-                <PasswordBox Name="txtPass" Height="35" Background="#21262d" Foreground="#c9d1d9" 
-                             BorderBrush="#30363d" Padding="10,8" FontSize="14"/>
+                <!-- Usuario -->
+                <TextBlock Text="Usuario:" Foreground="#6b8fa3" Margin="0,0,0,5" FontSize="12"/>
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="6">
+                    <TextBox Name="txtUser" Height="40" Background="Transparent" Foreground="#e0f7ff" 
+                             BorderThickness="0" Padding="12,10" FontSize="14" CaretBrush="#00f5ff"/>
+                </Border>
                 
-                <TextBlock Name="txtError" Text="" Foreground="#f85149" 
-                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <!-- Contraseña -->
+                <TextBlock Text="Contraseña:" Foreground="#6b8fa3" Margin="0,15,0,5" FontSize="12"/>
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="6">
+                    <PasswordBox Name="txtPass" Height="40" Background="Transparent" Foreground="#e0f7ff" 
+                                 BorderThickness="0" Padding="12,10" FontSize="14" CaretBrush="#00f5ff"/>
+                </Border>
                 
-                <Button Name="btnLogin" Content="INGRESAR" Height="40" Margin="0,20,0,0"
-                        Background="#238636" Foreground="White" BorderThickness="0" 
-                        FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+                <!-- Error -->
+                <TextBlock Name="txtError" Text="" Foreground="#ff4757" 
+                           HorizontalAlignment="Center" Margin="0,12,0,0" FontSize="12"/>
+                
+                <!-- Boton Login -->
+                <Border CornerRadius="8" Margin="0,20,0,0" Height="45" Cursor="Hand">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#00ff88" Offset="0"/>
+                            <GradientStop Color="#00d4aa" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Button Name="btnLogin" Content="INGRESAR" 
+                            Background="Transparent" Foreground="#0a0e14" BorderThickness="0" 
+                            FontSize="14" FontWeight="Bold" Cursor="Hand" Height="45"/>
+                </Border>
             </StackPanel>
         </Grid>
     </Border>
@@ -454,8 +512,13 @@ function Show-MainWindow {
         <!-- TABS: Tools primero, Apps segundo, Tweaks tercero -->
         <TabControl Grid.Row="2" Background="Transparent" BorderThickness="0" Margin="10">
             
-            <!-- TAB: HERRAMIENTAS -->
-            <TabItem Header="&#xE90F; Herramientas" Style="{StaticResource ModernTab}">
+            <TabItem Style="{StaticResource ModernTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE90F;" FontFamily="Segoe MDL2 Assets" FontSize="12" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Herramientas" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
                     <WrapPanel Name="toolsPanel">
                         
@@ -542,7 +605,13 @@ function Show-MainWindow {
             </TabItem>
             
             <!-- TAB: APLICACIONES -->
-            <TabItem Header="&#xE71D; Aplicaciones" Style="{StaticResource ModernTab}">
+            <TabItem Style="{StaticResource ModernTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE71D;" FontFamily="Segoe MDL2 Assets" FontSize="12" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Aplicaciones" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -599,7 +668,13 @@ function Show-MainWindow {
             </TabItem>
             
             <!-- TAB: TWEAKS -->
-            <TabItem Header="&#xE912; Tweaks" Style="{StaticResource ModernTab}">
+            <TabItem Style="{StaticResource ModernTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE912;" FontFamily="Segoe MDL2 Assets" FontSize="12" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Tweaks" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <ScrollViewer Margin="10">
                     <StackPanel>
                         <TextBlock Text="Optimizaciones del Sistema" FontSize="16" FontWeight="Bold" Foreground="#00f5ff" Margin="0,0,0,15"/>
@@ -673,7 +748,13 @@ function Show-MainWindow {
             </TabItem>
             
             <!-- TAB: CONFIGURACION -->
-            <TabItem Header="&#xE713; Configuracion" Style="{StaticResource ModernTab}">
+            <TabItem Style="{StaticResource ModernTab}">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="12" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Configuracion" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
                 <ScrollViewer Margin="20">
                     <StackPanel>
                         <TextBlock Text="Configuracion del Panel" FontSize="16" FontWeight="Bold" Foreground="#00f5ff" Margin="0,0,0,20"/>
