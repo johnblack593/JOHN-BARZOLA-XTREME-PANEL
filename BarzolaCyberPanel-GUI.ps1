@@ -671,29 +671,92 @@ function Show-MainWindow {
             $ramPercent = [math]::Round(($usedRAM / $totalRAM) * 100)
             $txtRAM.Text = "$usedRAM/$totalRAM GB ($ramPercent%)"
             
-            # CPU (simplificado - uso actual de procesos)
+            # Color RAM segun uso
+            if ($ramPercent -gt 85) { $txtRAM.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+            elseif ($ramPercent -gt 70) { $txtRAM.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+            else { $txtRAM.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#58a6ff") }
+            
+            # CPU
             $cpuLoad = (Get-CimInstance Win32_Processor).LoadPercentage
             if ($null -eq $cpuLoad) { $cpuLoad = 0 }
             $txtCPU.Text = "$cpuLoad%"
             
-            # GPU
-            $gpu = (Get-CimInstance Win32_VideoController | Select-Object -First 1).Name
-            if ($gpu.Length -gt 25) { $gpu = $gpu.Substring(0, 22) + "..." }
-            $txtGPU.Text = $gpu
+            # Color CPU segun uso
+            if ($cpuLoad -gt 85) { $txtCPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+            elseif ($cpuLoad -gt 60) { $txtCPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+            else { $txtCPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") }
             
-            # Disco
+            # GPU con temperatura (si disponible)
+            $gpu = Get-CimInstance Win32_VideoController | Select-Object -First 1
+            $gpuName = $gpu.Name
+            if ($gpuName.Length -gt 20) { $gpuName = $gpuName.Substring(0, 17) + "..." }
+            
+            # Intentar obtener temperatura GPU via WMI (NVIDIA/AMD si disponible)
+            $gpuTemp = $null
+            try {
+                # Intentar con Win32_PerfFormattedData para GPUs soportadas
+                $thermalZone = Get-CimInstance -Namespace "root/WMI" -ClassName "MSAcpi_ThermalZoneTemperature" -ErrorAction SilentlyContinue | Select-Object -First 1
+                if ($thermalZone) {
+                    $gpuTemp = [math]::Round(($thermalZone.CurrentTemperature - 2732) / 10)
+                }
+            }
+            catch {}
+            
+            if ($gpuTemp) {
+                $txtGPU.Text = "$gpuName ${gpuTemp}C"
+                # Color segun temperatura
+                if ($gpuTemp -gt 80) { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+                elseif ($gpuTemp -gt 65) { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+                else { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7") }
+            }
+            else {
+                $txtGPU.Text = $gpuName
+                $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7")
+            }
+            
+            # Disco con salud SMART
             $disk = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='C:'"
             $freeGB = [math]::Round($disk.FreeSpace / 1GB)
             $totalGB = [math]::Round($disk.Size / 1GB)
-            $txtDisk.Text = "$freeGB GB libres de $totalGB GB"
+            $usedPercent = [math]::Round((($totalGB - $freeGB) / $totalGB) * 100)
+            
+            # Intentar obtener estado SMART
+            $smartStatus = "OK"
+            try {
+                $diskDrive = Get-CimInstance Win32_DiskDrive | Where-Object { $_.DeviceID -like "*PHYSICALDRIVE0*" } | Select-Object -First 1
+                if ($diskDrive.Status -ne "OK") { $smartStatus = "Alerta" }
+            }
+            catch {}
+            
+            $txtDisk.Text = "$freeGB GB libre ($smartStatus)"
+            
+            # Color disco
+            if ($smartStatus -ne "OK" -or $usedPercent -gt 90) { 
+                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") 
+            }
+            elseif ($usedPercent -gt 75) { 
+                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") 
+            }
+            else { 
+                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") 
+            }
             
             # BitLocker
             try {
                 $bl = Get-BitLockerVolume -MountPoint "C:" -ErrorAction SilentlyContinue
-                if ($bl.ProtectionStatus -eq "On") { $txtBitLocker.Text = "Activo" }
-                else { $txtBitLocker.Text = "Inactivo" }
+                if ($bl.ProtectionStatus -eq "On") { 
+                    $txtBitLocker.Text = "Activo"
+                    $txtBitLocker.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636")
+                }
+                else { 
+                    $txtBitLocker.Text = "Inactivo"
+                    $txtBitLocker.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#8b949e")
+                }
             }
-            catch { $txtBitLocker.Text = "N/A" }
+            catch { 
+                $txtBitLocker.Text = "N/A" 
+                $txtBitLocker.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#8b949e")
+            }
         }
         catch {
             # Ignorar errores de monitoreo
@@ -702,6 +765,12 @@ function Show-MainWindow {
     
     # Actualizar monitoreo inicial
     Update-SystemMonitor
+    
+    # --- AUTO-REFRESH CADA 2 SEGUNDOS ---
+    $timer = New-Object System.Windows.Threading.DispatcherTimer
+    $timer.Interval = [TimeSpan]::FromSeconds(2)
+    $timer.Add_Tick({ Update-SystemMonitor })
+    $timer.Start()
     
     # --- SISTEMA DE LOGS ---
     $script:LogEntries = @()
