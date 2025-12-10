@@ -1,184 +1,202 @@
-# 🔥 JOHN BARZOLA XTREME PANEL
+# 🔥 CHRIS EXTREME PANEL
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-12.0-blue?style=for-the-badge" alt="Version"/>
-  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-blue?style=for-the-badge" alt="Platform"/>
-  <img src="https://img.shields.io/badge/PowerShell-5.1+-purple?style=for-the-badge" alt="PowerShell"/>
-  <img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License"/>
+  <img src="https://img.shields.io/badge/version-12.0-00f5ff?style=for-the-badge&labelColor=0a0e14" alt="Version"/>
+  <img src="https://img.shields.io/badge/Windows%2010%2F11-compatible-00ff88?style=for-the-badge&labelColor=0a0e14" alt="Platform"/>
+  <img src="https://img.shields.io/badge/PowerShell-5.1+-bf00ff?style=for-the-badge&labelColor=0a0e14" alt="PowerShell"/>
+  <img src="https://img.shields.io/badge/licencia-MIT-ff9500?style=for-the-badge&labelColor=0a0e14" alt="License"/>
 </p>
 
 <p align="center">
-  <b>Un panel de administración de sistema todo-en-uno con estética cyberpunk</b><br>
-  <i>System maintenance, software deployment, and optimization tools in one place</i>
+  <b>🚀 Panel de Administración Cyberpunk para Windows</b><br>
+  <i>Mantenimiento del sistema, instalación de software y optimizaciones avanzadas</i>
 </p>
 
 ---
 
-## ⚡ Quick Start (Remote Execution)
+## ⚡ Inicio Rápido
 
-### Method 1: One-liner (Recommended)
+### Versión GUI (Recomendada)
 
-Open **PowerShell as Administrator** and run:
+Abre **PowerShell como Administrador** y ejecuta:
+
+```powershell
+irm https://raw.githubusercontent.com/johnblack593/Script/feature/wpf-gui/BarzolaCyberPanel-GUI.ps1 | iex
+```
+
+### Versión Consola (Clásica)
 
 ```powershell
 irm https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1 | iex
 ```
 
-### Method 2: Download and Run
-
-```powershell
-# Download
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1" -OutFile "$env:TEMP\BarzolaCyberPanel.ps1"
-
-# Execute
-& "$env:TEMP\BarzolaCyberPanel.ps1"
-```
-
-### Method 3: Clone Repository
-
-```powershell
-git clone https://github.com/johnblack593/Script.git
-cd Script
-.\BarzolaCyberPanel.ps1
-```
-
 ---
 
-## 🎯 Features
+## 🎨 Interfaz Futurista
 
-### 🔌 External Tools
-| Tool | Description |
-|------|-------------|
-| **Chris Titus WinUtil** | Complete Windows optimization, debloat, and tweaks |
-| **IT-Tea Tool** | Lightweight system cleaner |
-| **Microsoft Activation (MAS)** | HWID-based Windows/Office activation |
+### Características de la GUI
 
-### 🔧 System Maintenance
-| Function | Description |
+| Elemento | Descripción |
 |----------|-------------|
-| **Deep Repair Protocol** | DISM + SFC + Driver cleanup combo |
-| **Network Doctor** | Reset DNS, Winsock, and TCP/IP stack |
+| **🔐 Sistema de Login** | Acceso seguro con usuarios autorizados |
+| **📊 Monitoreo en Tiempo Real** | RAM, CPU (modelo + uso + temp), GPU, Disco, BitLocker |
+| **� Tema Cyberpunk** | Colores neon (cyan, verde, púrpura), gradientes y efectos glow |
+| **⚡ Auto-refresh** | Actualización automática de métricas cada 3 segundos |
+| **📦 Dual Package Manager** | Soporte para Winget y Chocolatey |
 
-### 📦 Software Hub (Winget)
-| Package | Includes |
-|---------|----------|
-| **Essential Pack** | Chrome, Firefox, VLC, AIMP, qBittorrent |
-| **Gaming Libraries** | DirectX, XNA, .NET 8, VC++ 2005-2022 |
-| **Developer Tools** | Python, Node.js, Go, VS Code, Docker, Git, etc. |
-| **LTSC Recovery** | Microsoft Store recovery for LTSC editions |
+### Paleta de Colores
 
-### 🛡️ Extras
-| Feature | Description |
-|---------|-------------|
-| **Hardware Info** | Display CPU, RAM, GPU, and storage details |
-| **Connection Check** | Auto-detect online/offline status |
-
----
-
-## 📸 Screenshots
-
-```
-    ____  _   _  ____   _____  ____           ____   ___   ____   _____  
-   / ___|| | | ||  _ \ | ____||  _ \         / ___| / _ \ |  _ \ | ____| 
-  | |    | |_| || |_) ||  _|  | |_) | _____ | |    | | | || |_) ||  _|   
-  | |___ |  _  ||  __/ | |___ |  _ < |_____|| |___ | |_| ||  _ < | |___  
-   \____||_| |_||_|    |_____||_| \_\        \____| \___/ |_| \_\|_____| 
-
-                    +===========================================+
-                    |   JOHN BARZOLA XTREME PANEL v12.0         |
-                    |        CYBER-CORE SYSTEM TOOLS            |
-                    +===========================================+
-```
+| Color | Uso | Código |
+|-------|-----|--------|
+| 💎 **Cyan** | Enlaces, información principal | `#00f5ff` |
+| 💚 **Verde Neon** | CPU, botones de acción | `#00ff88` |
+| 💜 **Púrpura** | GPU, herramientas ITT | `#bf00ff` |
+| 🧡 **Naranja** | Disco, temperaturas | `#ff9500` |
+| 💗 **Rosa** | Recuperación LTSC | `#ff0099` |
 
 ---
 
-## 📋 Requirements
+## 🔌 Herramientas Integradas
 
-- **OS**: Windows 10/11 (any edition, including LTSC)
-- **PowerShell**: 5.1 or higher
-- **Privileges**: Administrator required
-- **Internet**: Required for external tools and Winget installations
-
----
-
-## 🔒 Security
-
-- **No telemetry** - This script does not collect any user data
-- **Open source** - Review the code before running
-- **Admin required** - Script will prompt for elevation if needed
-- **External tools** - Uses trusted sources (Chris Titus, MAS official repos)
-
-⚠️ **Warning**: Always review scripts before running them with administrative privileges.
+| Herramienta | Descripción | Icono |
+|-------------|-------------|-------|
+| **Chris Titus WinUtil** | Optimización completa de Windows, debloat y tweaks | ⚙️ |
+| **IT-Tea Tool (ITT)** | Limpiador de sistema ultraligero | 🧹 |
+| **Microsoft Activation (MAS)** | Activación HWID de Windows/Office | � |
+| **Reparación Profunda** | Combo DISM + SFC + limpieza de drivers | 🔧 |
+| **Doctor de Red** | Reset de DNS, Winsock y TCP/IP | 🌐 |
+| **Recuperación LTSC** | Restaurar Microsoft Store y Media Player | 📦 |
 
 ---
 
-## 🛠️ Configuration
+## 📦 Hub de Software
 
-### Customizing Package Lists
+### Packs Preconfigurados
 
-Edit the `Install-Essentials`, `Install-LTSC`, or `Install-Devs` functions to add/remove packages:
+| Pack | Aplicaciones Incluidas |
+|------|------------------------|
+| **🎯 Pack Esencial** | Chrome, AIMP, VLC, qBittorrent, WinRAR, DirectX, XNA, .NET 8, VC++ completo |
+| **💻 Pack Programador** | VS Code, Windsurf IDE, Git, Python 3.12, Node.js LTS, Go, PHP, Java JDK 21, Docker, Postman, MySQL Workbench |
 
-```powershell
-# Example: Add a new package
-Install-Winget "Discord.Discord" "Discord"
-```
+### Categorías de Apps
 
-### Finding Winget Package IDs
+- 🌐 **Navegadores**: Chrome, Firefox, Brave, Edge, Opera
+- 🎵 **Multimedia**: VLC, AIMP, Spotify, qBittorrent
+- 🎮 **Gaming Libraries**: DirectX, XNA, .NET 8, VC++ 2005-2022
+- 💬 **Comunicación**: Discord, Telegram, Zoom, Teams
+- 🛠️ **Utilidades**: 7-Zip, WinRAR, Everything Search
 
-```powershell
-winget search "package name"
-```
+---
+
+## ⚙️ Tweaks Disponibles
+
+### Rendimiento
+- ✅ Deshabilitar Telemetría de Windows
+- ✅ Deshabilitar Cortana
+- ✅ Deshabilitar Xbox GameBar y DVR
+- ✅ Plan de Energía: Rendimiento Máximo
+- ✅ Optimizar Prefetch y Superfetch
+- ✅ Deshabilitar Indexación de Búsqueda
+- ✅ Deshabilitar Inicio Rápido
+
+### Privacidad
+- ✅ Bloquear apps en segundo plano
+- ✅ Deshabilitar Activity History
+- ✅ Deshabilitar Advertising ID
+- ✅ Deshabilitar Location Tracking
+
+### Visual
+- ✅ Modo oscuro del sistema
+- ✅ Deshabilitar transparencia
+- ✅ Ocultar Widgets de Windows 11
+- ✅ Ocultar búsqueda en Taskbar
+
+---
+
+## 📋 Requisitos del Sistema
+
+| Requisito | Especificación |
+|-----------|----------------|
+| **Sistema Operativo** | Windows 10/11 (cualquier edición, incluyendo LTSC) |
+| **PowerShell** | 5.1 o superior |
+| **Privilegios** | Administrador requerido |
+| **Internet** | Requerido para herramientas externas e instalaciones |
+| **Fuente de Iconos** | Segoe MDL2 Assets (incluida en Windows 10/11) |
+
+---
+
+## �️ Seguridad
+
+- **🔒 Sin telemetría** - Este script no recolecta datos de usuario
+- **📖 Código abierto** - Revisa el código antes de ejecutar
+- **⚡ Elevación automática** - El script solicita privilegios de administrador si es necesario
+- **🔐 Login seguro** - Sistema de autenticación para acceso autorizado
+
+> ⚠️ **Advertencia**: Siempre revisa los scripts antes de ejecutarlos con privilegios administrativos.
 
 ---
 
 ## 📝 Changelog
 
-### v12.0 (Current)
-- ✨ Converted to pure PowerShell for GitHub remote execution
-- ✨ Added ASCII art banner
-- ✨ Improved UI with box-drawing characters
-- ✨ Added connection status indicator
-- ✨ Added Hardware Info module
-- ✨ Better error handling with try/catch
-- ✨ Confirmation prompts for critical operations
-- 🔧 Silent Winget installations
-- 🔧 Removed password system for public release
+### v12.0 (Actual) - Cyberpunk Edition
+- ✨ **Interfaz Futurista** - Tema cyberpunk con gradientes y efectos glow
+- ✨ **Iconos Segoe MDL2** - Iconos nativos de Windows en todas las secciones
+- ✨ **Login Rediseñado** - Ventana de acceso con estilo cyber
+- ✨ **Barra de Monitoreo Mejorada** - RAM, CPU (modelo), GPU, Disco, BitLocker, PC Model
+- ✨ **Virtualización** - Scroll fluido en listas de aplicaciones
+- ✨ **Inicio Diferido** - Ventana aparece más rápido
+- ✨ **Tabs con Iconos** - Headers de pestañas con iconos visuales
+- 🔧 **Optimización de Rendimiento** - Menor consumo de CPU en monitoreo
+- 🔧 **Layout Compacto** - Compatible con pantallas 720p
 
-### v10.0
-- Initial hybrid BAT/PowerShell version
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### v11.0
+- ✨ Versión GUI con WPF
+- ✨ Sistema de login
+- ✨ Selector Winget/Chocolatey
+- ✨ Presets (Esencial, Programador)
+- ✨ Monitoreo de sistema
+- ✨ Interfaz en español
 
 ---
 
-## 📄 License
+## �️ Estructura del Proyecto
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+Script/
+├── BarzolaCyberPanel-GUI.ps1   # Versión GUI principal
+├── BarzolaCyberPanel.ps1       # Versión consola clásica
+├── run.cmd                     # Launcher para ejecución local
+├── README.md                   # Documentación
+├── LICENSE                     # Licencia MIT
+└── .gitignore                  # Archivos ignorados
+```
 
 ---
 
-## 👤 Author
+## 👤 Autor
 
 **John Barzola**
-
 - GitHub: [@johnblack593](https://github.com/johnblack593)
 
 ---
 
-## ⭐ Star History
+## ⭐ Apoya el Proyecto
 
-If you find this project useful, please consider giving it a star! ⭐
+Si encuentras útil este proyecto, considera darle una estrella! ⭐
+
+```
+    ⭐ Click en "Star" en la esquina superior derecha ⭐
+```
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 
 <p align="center">
-  Made with 💜 and PowerShell
+  <b>🔮 Hecho con 💜 y PowerShell</b><br>
+  <i>Chris Extreme Panel - Cyberpunk Edition</i>
 </p>
