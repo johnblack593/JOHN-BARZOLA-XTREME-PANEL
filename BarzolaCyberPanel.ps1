@@ -2,7 +2,7 @@
 # JOHN BARZOLA XTREME PANEL - CYBER-CORE v12.0
 # GitHub Remote Execution Version
 # =========================================================
-# Usage: irm https://raw.githubusercontent.com/YOUR_USER/YOUR_REPO/main/BarzolaCyberPanel.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1 | iex
 # =========================================================
 
 #Requires -RunAsAdministrator

@@ -21,14 +21,14 @@
 Open **PowerShell as Administrator** and run:
 
 ```powershell
-irm https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/BarzolaCyberPanel.ps1 | iex
+irm https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1 | iex
 ```
 
 ### Method 2: Download and Run
 
 ```powershell
 # Download
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/BarzolaCyberPanel.ps1" -OutFile "$env:TEMP\BarzolaCyberPanel.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1" -OutFile "$env:TEMP\BarzolaCyberPanel.ps1"
 
 # Execute
 & "$env:TEMP\BarzolaCyberPanel.ps1"
@@ -37,8 +37,8 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REP
 ### Method 3: Clone Repository
 
 ```powershell
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
+git clone https://github.com/johnblack593/Script.git
+cd Script
 .\BarzolaCyberPanel.ps1
 ```
 
@@ -78,17 +78,16 @@ cd YOUR_REPO
 ## 📸 Screenshots
 
 ```
-   ██████╗ ██╗   ██╗██████╗ ███████╗██████╗      ██████╗ ██████╗ ██████╗ ███████╗
-  ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
-  ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝    ██║     ██║   ██║██████╔╝█████╗  
-  ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗    ██║     ██║   ██║██╔══██╗██╔══╝  
-  ╚██████╗   ██║   ██████╔╝███████╗██║  ██║    ╚██████╗╚██████╔╝██║  ██║███████╗
-   ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+    ____  _   _  ____   _____  ____           ____   ___   ____   _____  
+   / ___|| | | ||  _ \ | ____||  _ \         / ___| / _ \ |  _ \ | ____| 
+  | |    | |_| || |_) ||  _|  | |_) | _____ | |    | | | || |_) ||  _|   
+  | |___ |  _  ||  __/ | |___ |  _ < |_____|| |___ | |_| ||  _ < | |___  
+   \____||_| |_||_|    |_____||_| \_\        \____| \___/ |_| \_\|_____| 
 
-                    ╔═══════════════════════════════════════╗
-                    ║   JOHN BARZOLA XTREME PANEL v12.0     ║
-                    ║        CYBER-CORE SYSTEM TOOLS        ║
-                    ╚═══════════════════════════════════════╝
+                    +===========================================+
+                    |   JOHN BARZOLA XTREME PANEL v12.0         |
+                    |        CYBER-CORE SYSTEM TOOLS            |
+                    +===========================================+
 ```
 
 ---
@@ -137,7 +136,7 @@ winget search "package name"
 ### v12.0 (Current)
 - ✨ Converted to pure PowerShell for GitHub remote execution
 - ✨ Added ASCII art banner
-- ✨ Improved UI with Unicode box-drawing characters
+- ✨ Improved UI with box-drawing characters
 - ✨ Added connection status indicator
 - ✨ Added Hardware Info module
 - ✨ Better error handling with try/catch
@@ -170,7 +169,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **John Barzola**
 
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- GitHub: [@johnblack593](https://github.com/johnblack593)
 
 ---
 
