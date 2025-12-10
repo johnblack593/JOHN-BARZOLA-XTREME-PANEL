@@ -284,6 +284,7 @@ function Show-MainWindow {
                 <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE7F4;" FontFamily="Segoe MDL2 Assets" Foreground="#58a6ff" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="RAM " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
                         <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -675,7 +676,6 @@ function Show-MainWindow {
     $btnPresetDev = $window.FindName("btnPresetDev")
     
     # Package manager
-    $rbWinget = $window.FindName("rbWinget")
     $rbChoco = $window.FindName("rbChoco")
     
     # --- INICIALIZAR ---
@@ -761,7 +761,7 @@ function Show-MainWindow {
             }
             catch {}
             
-            if ($gpuUsage -ne $null) {
+            if ($null -ne $gpuUsage) {
                 $txtGPU.Text = "$gpuUsage%"
             }
             else {
