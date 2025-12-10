@@ -176,8 +176,8 @@ function Show-MainWindow {
 <Window 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="JOHN BARZOLA XTREME PANEL v12.0" 
-    Height="750" Width="1100"
+    Title="CHRIS EXTREME PANEL v12.0" 
+    Height="650" Width="1100"
     WindowStartupLocation="CenterScreen"
     Background="#0d1117"
     FontFamily="Segoe UI">
@@ -920,15 +920,15 @@ function Show-MainWindow {
             
             # Contenedor de categoria
             $catContainer = New-Object System.Windows.Controls.StackPanel
-            $catContainer.Margin = [System.Windows.Thickness]::new(0, 10, 0, 5)
+            $catContainer.Margin = [System.Windows.Thickness]::new(0, 5, 0, 0)
             
             # Header de categoria
             $catHeader = New-Object System.Windows.Controls.TextBlock
             $catHeader.Text = $category
-            $catHeader.FontSize = 14
+            $catHeader.FontSize = 13
             $catHeader.FontWeight = "Bold"
             $catHeader.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#58a6ff")
-            $catHeader.Margin = [System.Windows.Thickness]::new(5, 0, 5, 8)
+            $catHeader.Margin = [System.Windows.Thickness]::new(3, 0, 3, 4)
             [void]$catContainer.Children.Add($catHeader)
             
             # WrapPanel para apps de esta categoria
@@ -937,10 +937,10 @@ function Show-MainWindow {
             foreach ($app in $script:AppCategories[$category]) {
                 $border = New-Object System.Windows.Controls.Border
                 $border.Background = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#21262d")
-                $border.CornerRadius = [System.Windows.CornerRadius]::new(5)
-                $border.Padding = [System.Windows.Thickness]::new(10, 8, 10, 8)
-                $border.Margin = [System.Windows.Thickness]::new(3)
-                $border.Width = 200
+                $border.CornerRadius = [System.Windows.CornerRadius]::new(4)
+                $border.Padding = [System.Windows.Thickness]::new(8, 5, 8, 5)
+                $border.Margin = [System.Windows.Thickness]::new(2)
+                $border.Width = 180
                 
                 $stack = New-Object System.Windows.Controls.StackPanel
                 $stack.Orientation = "Horizontal"
