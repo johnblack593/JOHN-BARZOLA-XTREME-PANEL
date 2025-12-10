@@ -314,7 +314,8 @@ function Show-MainWindow {
                 <!-- Disco (Espacio + Salud) -->
                 <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xEDA2;" FontFamily="Segoe MDL2 Assets" Foreground="#f0883e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Foreground="#f0883e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Disco " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
                         <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                         <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
                         <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -325,6 +326,7 @@ function Show-MainWindow {
                 <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#8b949e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="BitLocker " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
                         <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -681,17 +683,25 @@ function Show-MainWindow {
     $txtUserInfo.Text = "Usuario actual: $script:AuthenticatedUser"
     
     # --- INICIALIZAR INFO ESTATICA ---
-    # CPU Model (estatico, no cambia)
+    # CPU Model - extraer solo el modelo (ej: i5-1135G7)
     $cpuInfo = Get-CimInstance Win32_Processor | Select-Object -First 1
-    $cpuModel = $cpuInfo.Name -replace '\(R\)|\(TM\)|CPU|@.*|Processor', '' -replace '\s+', ' '
-    $cpuModel = $cpuModel.Trim()
-    if ($cpuModel.Length -gt 15) { $cpuModel = $cpuModel.Substring(0, 12) + "..." }
+    $cpuFullName = $cpuInfo.Name
+    # Buscar patron iX-XXXXX o similar
+    if ($cpuFullName -match '(i[3579]-\d{4,5}[A-Z]*|Ryzen \d \d{4}[A-Z]*|Xeon [A-Z]?\d+)') {
+        $cpuModel = $Matches[1]
+    }
+    else {
+        # Fallback: limpiar nombre
+        $cpuModel = $cpuFullName -replace '\(R\)|\(TM\)|Intel|AMD|Core|CPU|@.*|Processor|\s+', ' '
+        $cpuModel = $cpuModel.Trim()
+        if ($cpuModel.Length -gt 12) { $cpuModel = $cpuModel.Substring(0, 10) + ".." }
+    }
     $txtCPUModel.Text = $cpuModel
     
-    # PC Model (estatico)
+    # PC Model (estatico) - mas largo para ver mejor
     $pcInfo = Get-CimInstance Win32_ComputerSystem
     $pcModel = $pcInfo.Model
-    if ($pcModel.Length -gt 20) { $pcModel = $pcModel.Substring(0, 17) + "..." }
+    if ($pcModel.Length -gt 30) { $pcModel = $pcModel.Substring(0, 27) + "..." }
     $txtPCModel.Text = $pcModel
     
     # --- ACTUALIZAR MONITOREO ---
