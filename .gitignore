@@ -1,0 +1,22 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Old versions
+*.bak
+*.old
+
+# IDE
+.vscode/
+.idea/
+
+# Keep original BAT for reference (optional - remove if you want to exclude)
+# *.bat
