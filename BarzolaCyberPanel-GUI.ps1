@@ -843,15 +843,21 @@ function Show-MainWindow {
         foreach ($category in $script:AppCategories.Keys) {
             if ($Filter -ne "Todas" -and $category -ne $Filter) { continue }
             
+            # Contenedor de categoria
+            $catContainer = New-Object System.Windows.Controls.StackPanel
+            $catContainer.Margin = [System.Windows.Thickness]::new(0, 10, 0, 5)
+            
             # Header de categoria
             $catHeader = New-Object System.Windows.Controls.TextBlock
             $catHeader.Text = $category
             $catHeader.FontSize = 14
             $catHeader.FontWeight = "Bold"
             $catHeader.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#58a6ff")
-            $catHeader.Margin = [System.Windows.Thickness]::new(5, 15, 5, 5)
-            $catHeader.Width = 1000
-            [void]$appsListBox.Items.Add($catHeader)
+            $catHeader.Margin = [System.Windows.Thickness]::new(5, 0, 5, 8)
+            [void]$catContainer.Children.Add($catHeader)
+            
+            # WrapPanel para apps de esta categoria
+            $appsWrap = New-Object System.Windows.Controls.WrapPanel
             
             foreach ($app in $script:AppCategories[$category]) {
                 $border = New-Object System.Windows.Controls.Border
@@ -859,7 +865,7 @@ function Show-MainWindow {
                 $border.CornerRadius = [System.Windows.CornerRadius]::new(5)
                 $border.Padding = [System.Windows.Thickness]::new(10, 8, 10, 8)
                 $border.Margin = [System.Windows.Thickness]::new(3)
-                $border.Width = 220
+                $border.Width = 200
                 
                 $stack = New-Object System.Windows.Controls.StackPanel
                 $stack.Orientation = "Horizontal"
@@ -873,15 +879,18 @@ function Show-MainWindow {
                 $lbl.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#c9d1d9")
                 $lbl.Margin = [System.Windows.Thickness]::new(8, 0, 0, 0)
                 $lbl.VerticalAlignment = "Center"
-                $lbl.FontSize = 12
+                $lbl.FontSize = 11
                 
                 [void]$stack.Children.Add($cb)
                 [void]$stack.Children.Add($lbl)
                 $border.Child = $stack
                 
-                [void]$appsListBox.Items.Add($border)
+                [void]$appsWrap.Children.Add($border)
                 $script:appCheckboxes[$app.Id] = $cb
             }
+            
+            [void]$catContainer.Children.Add($appsWrap)
+            [void]$appsListBox.Items.Add($catContainer)
         }
     }
     
