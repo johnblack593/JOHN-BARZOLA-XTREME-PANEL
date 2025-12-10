@@ -278,56 +278,62 @@ function Show-MainWindow {
         </Border>
         
         <!-- BARRA DE MONITOREO -->
-        <Border Grid.Row="1" Background="#0d1117" Padding="12,8" BorderBrush="#21262d" BorderThickness="0,0,0,1">
+        <Border Grid.Row="1" Background="#0d1117" Padding="10,6" BorderBrush="#21262d" BorderThickness="0,0,0,1">
             <WrapPanel>
                 <!-- RAM -->
-                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="[M]" Foreground="#58a6ff" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
-                        <TextBlock Text="RAM " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text="&#xE7F4;" FontFamily="Segoe MDL2 Assets" Foreground="#58a6ff" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- CPU (Uso + Temp agrupados) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
+                <!-- CPU (Modelo + Uso + Temp) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="[C]" Foreground="#238636" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
-                        <TextBlock Text="CPU " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtCPU" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
-                        <TextBlock Name="txtCPUTemp" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text="&#xE950;" FontFamily="Segoe MDL2 Assets" Foreground="#238636" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtCPUModel" Text="CPU" Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Text=" " Foreground="#30363d" FontSize="10"/>
+                        <TextBlock Name="txtCPU" Text="--" Foreground="#238636" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
+                        <TextBlock Name="txtCPUTemp" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- GPU (Uso + Temp agrupados) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
+                <!-- GPU (Uso + Temp) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="[G]" Foreground="#a371f7" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
-                        <TextBlock Text="GPU " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtGPU" Text="--" Foreground="#a371f7" FontSize="11" FontWeight="Bold"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
-                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text="&#xE7F8;" FontFamily="Segoe MDL2 Assets" Foreground="#a371f7" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="GPU " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtGPU" Text="--" Foreground="#a371f7" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
+                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- Disco (Espacio + Salud agrupados) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
+                <!-- Disco (Espacio + Salud) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="[D]" Foreground="#f0883e" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
-                        <TextBlock Text="Disco " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
-                        <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text="&#xEDA2;" FontFamily="Segoe MDL2 Assets" Foreground="#f0883e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
+                        <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
                 <!-- BitLocker -->
-                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,0,0">
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="[B]" Foreground="#8b949e" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
-                        <TextBlock Text="BitLocker " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#8b949e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Modelo del Equipo -->
+                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE7F7;" FontFamily="Segoe MDL2 Assets" Foreground="#58a6ff" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtPCModel" Text="--" Foreground="#58a6ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </WrapPanel>
@@ -623,12 +629,14 @@ function Show-MainWindow {
     # Monitoreo
     $txtRAM = $window.FindName("txtRAM")
     $txtCPU = $window.FindName("txtCPU")
+    $txtCPUModel = $window.FindName("txtCPUModel")
     $txtCPUTemp = $window.FindName("txtCPUTemp")
     $txtGPU = $window.FindName("txtGPU")
     $txtGPUTemp = $window.FindName("txtGPUTemp")
     $txtDisk = $window.FindName("txtDisk")
     $txtDiskHealth = $window.FindName("txtDiskHealth")
     $txtBitLocker = $window.FindName("txtBitLocker")
+    $txtPCModel = $window.FindName("txtPCModel")
     
     # Botones
     $btnTitus = $window.FindName("btnTitus")
@@ -671,6 +679,20 @@ function Show-MainWindow {
     # --- INICIALIZAR ---
     $txtWelcome.Text = "Bienvenido, $script:AuthenticatedUser"
     $txtUserInfo.Text = "Usuario actual: $script:AuthenticatedUser"
+    
+    # --- INICIALIZAR INFO ESTATICA ---
+    # CPU Model (estatico, no cambia)
+    $cpuInfo = Get-CimInstance Win32_Processor | Select-Object -First 1
+    $cpuModel = $cpuInfo.Name -replace '\(R\)|\(TM\)|CPU|@.*|Processor', '' -replace '\s+', ' '
+    $cpuModel = $cpuModel.Trim()
+    if ($cpuModel.Length -gt 15) { $cpuModel = $cpuModel.Substring(0, 12) + "..." }
+    $txtCPUModel.Text = $cpuModel
+    
+    # PC Model (estatico)
+    $pcInfo = Get-CimInstance Win32_ComputerSystem
+    $pcModel = $pcInfo.Model
+    if ($pcModel.Length -gt 20) { $pcModel = $pcModel.Substring(0, 17) + "..." }
+    $txtPCModel.Text = $pcModel
     
     # --- ACTUALIZAR MONITOREO ---
     function Update-SystemMonitor {
