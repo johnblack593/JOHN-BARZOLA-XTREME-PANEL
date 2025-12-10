@@ -79,7 +79,7 @@ function Show-LoginWindow {
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="CYBER CORE - Acceso Seguro" 
-    Height="350" Width="400"
+    Height="420" Width="400"
     WindowStartupLocation="CenterScreen"
     Background="#0d1117"
     ResizeMode="NoResize"
@@ -405,24 +405,37 @@ function Show-MainWindow {
                     </Grid.RowDefinitions>
                     
                     <!-- Botones de categoria -->
-                    <WrapPanel Grid.Row="0" Margin="0,0,0,10">
-                        <Button Name="btnCatAll" Content="Todas" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatBrowsers" Content="Navegadores" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatMedia" Content="Multimedia" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatGaming" Content="Librerias Gaming" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatDev" Content="Desarrollo" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatComm" Content="Comunicacion" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnCatUtils" Content="Utilidades" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
-                        <Button Name="btnSelectAll" Content="Seleccionar Todo" Style="{StaticResource ModernButton}" Margin="10,0,0,5"/>
-                        <Button Name="btnDeselectAll" Content="Deseleccionar" Style="{StaticResource SecondaryButton}" Margin="5,0,0,5"/>
-                    </WrapPanel>
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <WrapPanel Margin="0,0,0,8">
+                            <Button Name="btnCatAll" Content="Todas" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatBrowsers" Content="Navegadores" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatMedia" Content="Multimedia" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatGaming" Content="Gaming" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatDev" Content="Desarrollo" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatComm" Content="Comunicacion" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                            <Button Name="btnCatUtils" Content="Utilidades" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Name="btnPresetEssential" Content="Pack Esencial" Style="{StaticResource ModernButton}" Margin="0,0,5,0" ToolTip="Chrome, AIMP, VLC, qBittorrent, Gaming Libs, WinRAR"/>
+                            <Button Name="btnPresetDev" Content="Pack Programador" Style="{StaticResource ModernButton}" Margin="0,0,5,0" Background="#a371f7" ToolTip="VS Code, Git, Python, Node.js, Docker"/>
+                            <Button Name="btnSelectAll" Content="Seleccionar Todo" Style="{StaticResource SecondaryButton}" Margin="10,0,5,0"/>
+                            <Button Name="btnDeselectAll" Content="Deseleccionar" Style="{StaticResource SecondaryButton}" Margin="0,0,15,0"/>
+                            <Border Background="#21262d" CornerRadius="5" Padding="8,5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Gestor: " Foreground="#8b949e" VerticalAlignment="Center"/>
+                                    <RadioButton Name="rbWinget" Content="Winget" Foreground="#c9d1d9" GroupName="pkgMgr" IsChecked="True" Margin="0,0,10,0"/>
+                                    <RadioButton Name="rbChoco" Content="Chocolatey" Foreground="#c9d1d9" GroupName="pkgMgr"/>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
                     
                     <!-- Lista de apps -->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <ItemsControl Name="appsListBox">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel/>
+                                    <WrapPanel ItemWidth="230"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
@@ -561,6 +574,14 @@ function Show-MainWindow {
     $btnSelectAll = $window.FindName("btnSelectAll")
     $btnDeselectAll = $window.FindName("btnDeselectAll")
     
+    # Preset buttons
+    $btnPresetEssential = $window.FindName("btnPresetEssential")
+    $btnPresetDev = $window.FindName("btnPresetDev")
+    
+    # Package manager
+    $rbWinget = $window.FindName("rbWinget")
+    $rbChoco = $window.FindName("rbChoco")
+    
     # --- INICIALIZAR ---
     $txtWelcome.Text = "Bienvenido, $script:AuthenticatedUser"
     $txtUserInfo.Text = "Usuario actual: $script:AuthenticatedUser"
@@ -683,6 +704,29 @@ function Show-MainWindow {
             foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
         })
     
+    # Pack Esencial: Chrome, AIMP, VLC, qBittorrent, Gaming Libs, WinRAR
+    $btnPresetEssential.Add_Click({
+            foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
+            $essentialIds = @("Google.Chrome", "AIMP.AIMP", "VideoLAN.VLC", "qBittorrent.qBittorrent", 
+                "RARLab.WinRAR", "Microsoft.DirectX", "Microsoft.XNARedist", 
+                "Microsoft.DotNet.DesktopRuntime.8", "Microsoft.VCRedist.2015+.x64")
+            foreach ($id in $essentialIds) {
+                if ($script:appCheckboxes.ContainsKey($id)) { $script:appCheckboxes[$id].IsChecked = $true }
+            }
+            Set-Status "Pack Esencial seleccionado"
+        })
+    
+    # Pack Programador: VS Code, Git, Python, Node.js, Docker, etc
+    $btnPresetDev.Add_Click({
+            foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
+            $devIds = @("Microsoft.VisualStudioCode", "Git.Git", "Python.Python.3.12", 
+                "OpenJS.NodeJS.LTS", "Docker.DockerDesktop", "Postman.Postman")
+            foreach ($id in $devIds) {
+                if ($script:appCheckboxes.ContainsKey($id)) { $script:appCheckboxes[$id].IsChecked = $true }
+            }
+            Set-Status "Pack Programador seleccionado"
+        })
+    
     # --- FUNCION ACTUALIZAR STATUS ---
     function Set-Status {
         param([string]$Message)
@@ -699,25 +743,48 @@ function Show-MainWindow {
                 return
             }
         
+            $useChoco = $rbChoco.IsChecked
             $progressBar.Visibility = "Visible"
             $progressBar.Maximum = $selected.Count
             $progressBar.Value = 0
         
             $count = 0
+            $failed = @()
             foreach ($app in $selected) {
                 $count++
-                Set-Status "Instalando: $($app.Key) ($count/$($selected.Count))"
+                $mgr = if ($useChoco) { "Chocolatey" } else { "Winget" }
+                Set-Status "[$mgr] Instalando: $($app.Key) ($count/$($selected.Count))"
                 $progressBar.Value = $count
             
                 try {
-                    $process = Start-Process -FilePath "winget" -ArgumentList "install -e --id $($app.Key) --accept-package-agreements --accept-source-agreements --silent" -Wait -PassThru -NoNewWindow
+                    if ($useChoco) {
+                        # Chocolatey - el ID puede ser diferente, usamos nombre similar
+                        $chocoName = ($app.Key -split '\.')[-1].ToLower()
+                        Start-Process -FilePath "choco" -ArgumentList "install $chocoName -y" -Wait -NoNewWindow -ErrorAction Stop
+                    }
+                    else {
+                        # Winget
+                        $exitCode = (Start-Process -FilePath "winget" -ArgumentList "install -e --id $($app.Key) --accept-package-agreements --accept-source-agreements --silent" -Wait -PassThru -NoNewWindow).ExitCode
+                        if ($exitCode -ne 0) { $failed += $app.Key }
+                    }
                 }
-                catch {}
+                catch {
+                    $failed += $app.Key
+                }
             }
         
             $progressBar.Visibility = "Collapsed"
-            Set-Status "Instalacion completada - $count aplicaciones"
-            [System.Windows.MessageBox]::Show("Se instalaron $count aplicaciones.", "Completado", "OK", "Information")
+        
+            if ($failed.Count -gt 0) {
+                $altMgr = if ($useChoco) { "Winget" } else { "Chocolatey" }
+                $failedList = $failed -join "`n"
+                $msg = "Se instalaron $($count - $failed.Count) aplicaciones.`n`nFallaron ($($failed.Count)):`n$failedList`n`nSugerencia: Intenta instalar las fallidas con $altMgr"
+                [System.Windows.MessageBox]::Show($msg, "Completado con errores", "OK", "Warning")
+            }
+            else {
+                [System.Windows.MessageBox]::Show("Se instalaron $count aplicaciones correctamente.", "Completado", "OK", "Information")
+            }
+            Set-Status "Instalacion completada"
         })
     
     # --- EVENTOS HERRAMIENTAS ---
