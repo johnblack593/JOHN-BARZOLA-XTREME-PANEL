@@ -449,12 +449,16 @@ function Show-MainWindow {
                         </WrapPanel>
                     </StackPanel>
                     
-                    <!-- Lista de apps -->
-                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl Name="appsListBox">
+                    <!-- Lista de apps con virtualizacion -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
+                                  VirtualizingPanel.IsVirtualizing="True"
+                                  VirtualizingPanel.VirtualizationMode="Recycling">
+                        <ItemsControl Name="appsListBox" 
+                                      VirtualizingPanel.IsVirtualizing="True"
+                                      VirtualizingPanel.VirtualizationMode="Recycling">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel ItemWidth="230"/>
+                                    <VirtualizingStackPanel/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                         </ItemsControl>
@@ -856,14 +860,20 @@ function Show-MainWindow {
         }
     }
     
-    # Actualizar monitoreo inicial
-    Update-SystemMonitor
-    
-    # --- AUTO-REFRESH CADA 2 SEGUNDOS ---
+    # --- AUTO-REFRESH CADA 3 SEGUNDOS (menos frecuente para mejor rendimiento) ---
     $timer = New-Object System.Windows.Threading.DispatcherTimer
-    $timer.Interval = [TimeSpan]::FromSeconds(2)
+    $timer.Interval = [TimeSpan]::FromSeconds(3)
     $timer.Add_Tick({ Update-SystemMonitor })
-    $timer.Start()
+    
+    # Diferir la primera actualizacion para que la ventana aparezca mas rapido
+    $initTimer = New-Object System.Windows.Threading.DispatcherTimer
+    $initTimer.Interval = [TimeSpan]::FromMilliseconds(500)
+    $initTimer.Add_Tick({
+            Update-SystemMonitor
+            $timer.Start()
+            $initTimer.Stop()
+        })
+    $initTimer.Start()
     
     # --- SISTEMA DE LOGS ---
     $script:LogEntries = @()
