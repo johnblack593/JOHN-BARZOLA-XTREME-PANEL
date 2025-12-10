@@ -183,62 +183,145 @@ function Show-MainWindow {
     FontFamily="Segoe UI">
     
     <Window.Resources>
+        <!-- Colores Futuristas -->
+        <SolidColorBrush x:Key="CyberBg" Color="#0a0e14"/>
+        <SolidColorBrush x:Key="CyberCard" Color="#111922"/>
+        <SolidColorBrush x:Key="CyberBorder" Color="#1e3a5f"/>
+        <SolidColorBrush x:Key="CyberCyan" Color="#00f5ff"/>
+        <SolidColorBrush x:Key="CyberPurple" Color="#bf00ff"/>
+        <SolidColorBrush x:Key="CyberPink" Color="#ff0099"/>
+        <SolidColorBrush x:Key="CyberGreen" Color="#00ff88"/>
+        <SolidColorBrush x:Key="CyberText" Color="#e0f7ff"/>
+        <SolidColorBrush x:Key="CyberTextDim" Color="#6b8fa3"/>
+        
+        <!-- Boton Principal - Gradiente Cyan -->
         <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="Background" Value="#238636"/>
+            <Setter Property="Foreground" Value="#0a0e14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="18,10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#00ff88" Offset="0"/>
+                                    <GradientStop Color="#00d4aa" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00ff88" BlurRadius="15" ShadowDepth="0" Opacity="0.6"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Boton Secundario - Borde Cyan -->
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#111922"/>
+            <Setter Property="Foreground" Value="#00f5ff"/>
+            <Setter Property="BorderBrush" Value="#1e3a5f"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="14,7"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"
+                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#00f5ff"/>
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#00f5ff" BlurRadius="10" ShadowDepth="0" Opacity="0.4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Boton Preset Especial - Gradiente Purple -->
+        <Style x:Key="PresetButton" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                        <Border Name="border" CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#6366f1" Offset="0"/>
+                                    <GradientStop Color="#8b5cf6" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#8b5cf6" BlurRadius="12" ShadowDepth="0" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         
-        <Style x:Key="SecondaryButton" TargetType="Button">
-            <Setter Property="Background" Value="#21262d"/>
-            <Setter Property="Foreground" Value="#c9d1d9"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,6"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
+        <!-- Card Futurista -->
         <Style x:Key="ToolCard" TargetType="Border">
-            <Setter Property="Background" Value="#161b22"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Background" Value="#111922"/>
+            <Setter Property="BorderBrush" Value="#1e3a5f"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="18"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
         
+        <!-- Tab Futurista -->
         <Style x:Key="ModernTab" TargetType="TabItem">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#8b949e"/>
-            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="Foreground" Value="#6b8fa3"/>
+            <Setter Property="Padding" Value="22,12"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
-                        <Border Name="Border" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <Border Name="Border" Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}" CornerRadius="8,8,0,0">
                             <ContentPresenter ContentSource="Header"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#21262d"/>
-                                <Setter Property="Foreground" Value="#58a6ff"/>
+                                <Setter TargetName="Border" Property="Background" Value="#111922"/>
+                                <Setter Property="Foreground" Value="#00f5ff"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#00f5ff"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -247,7 +330,7 @@ function Show-MainWindow {
         </Style>
     </Window.Resources>
     
-    <Grid>
+    <Grid Background="#0a0e14">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -255,8 +338,15 @@ function Show-MainWindow {
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <!-- HEADER -->
-        <Border Grid.Row="0" Background="#161b22" Padding="20,15">
+        <!-- HEADER FUTURISTA -->
+        <Border Grid.Row="0" Padding="20,15">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0a0e14" Offset="0"/>
+                    <GradientStop Color="#0d1520" Offset="0.5"/>
+                    <GradientStop Color="#0a0e14" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -264,79 +354,98 @@ function Show-MainWindow {
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="CHRIS EXTREME PANEL" FontSize="22" FontWeight="Bold" Foreground="#58a6ff"/>
-                    <TextBlock Name="txtWelcome" Text="Bienvenido, Usuario" FontSize="11" Foreground="#8b949e"/>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="&#xE950;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                    <StackPanel>
+                        <TextBlock Text="CHRIS EXTREME PANEL" FontSize="22" FontWeight="Bold" Foreground="#00f5ff"/>
+                        <TextBlock Name="txtWelcome" Text="Bienvenido, Usuario" FontSize="11" Foreground="#6b8fa3"/>
+                    </StackPanel>
                 </StackPanel>
                 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Border Background="#238636" CornerRadius="8" Padding="8,4" Margin="5,0">
-                        <TextBlock Text="EN LINEA" FontSize="10" Foreground="White"/>
+                    <Border CornerRadius="12" Padding="12,5" Margin="5,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#00ff88" Offset="0"/>
+                                <GradientStop Color="#00d4aa" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xEA3B;" FontFamily="Segoe MDL2 Assets" Foreground="#0a0e14" FontSize="11" Margin="0,0,5,0"/>
+                            <TextBlock Text="CONECTADO" FontSize="10" FontWeight="Bold" Foreground="#0a0e14"/>
+                        </StackPanel>
                     </Border>
                 </StackPanel>
             </Grid>
         </Border>
         
-        <!-- BARRA DE MONITOREO -->
-        <Border Grid.Row="1" Background="#0d1117" Padding="10,6" BorderBrush="#21262d" BorderThickness="0,0,0,1">
+        <!-- BARRA DE MONITOREO FUTURISTA -->
+        <Border Grid.Row="1" Padding="10,8" BorderBrush="#1e3a5f" BorderThickness="0,0,0,1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#0a0e14" Offset="0"/>
+                    <GradientStop Color="#111922" Offset="0.5"/>
+                    <GradientStop Color="#0a0e14" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <WrapPanel>
                 <!-- RAM -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE7F4;" FontFamily="Segoe MDL2 Assets" Foreground="#58a6ff" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="RAM " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE7F4;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="RAM " Foreground="#6b8fa3" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtRAM" Text="--" Foreground="#00f5ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- CPU (Modelo + Uso + Temp) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
+                <!-- CPU -->
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE950;" FontFamily="Segoe MDL2 Assets" Foreground="#238636" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtCPUModel" Text="CPU" Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
-                        <TextBlock Text=" " Foreground="#30363d" FontSize="10"/>
-                        <TextBlock Name="txtCPU" Text="--" Foreground="#238636" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
-                        <TextBlock Name="txtCPUTemp" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE950;" FontFamily="Segoe MDL2 Assets" Foreground="#00ff88" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtCPUModel" Text="CPU" Foreground="#6b8fa3" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Text=" " Foreground="#1e3a5f" FontSize="10"/>
+                        <TextBlock Name="txtCPU" Text="--" Foreground="#00ff88" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#1e3a5f" FontSize="10"/>
+                        <TextBlock Name="txtCPUTemp" Text="--" Foreground="#ff6b35" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- GPU (Uso + Temp) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
+                <!-- GPU -->
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE7F8;" FontFamily="Segoe MDL2 Assets" Foreground="#a371f7" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="GPU " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtGPU" Text="--" Foreground="#a371f7" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
-                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE7F8;" FontFamily="Segoe MDL2 Assets" Foreground="#bf00ff" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="GPU " Foreground="#6b8fa3" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtGPU" Text="--" Foreground="#bf00ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#1e3a5f" FontSize="10"/>
+                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#ff6b35" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- Disco (Espacio + Salud) -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
+                <!-- Disco -->
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Foreground="#f0883e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="Disco " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
-                        <TextBlock Text=" | " Foreground="#30363d" FontSize="10"/>
-                        <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Foreground="#ff9500" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Disco " Foreground="#6b8fa3" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtDisk" Text="--" Foreground="#ff9500" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text=" | " Foreground="#1e3a5f" FontSize="10"/>
+                        <TextBlock Name="txtDiskHealth" Text="--" Foreground="#00ff88" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
                 <!-- BitLocker -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,8,0">
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#8b949e" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="BitLocker " Foreground="#8b949e" FontSize="10" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#6b8fa3" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="BitLocker " Foreground="#6b8fa3" FontSize="10" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtBitLocker" Text="--" Foreground="#e0f7ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 
-                <!-- Modelo del Equipo -->
-                <Border Background="#21262d" CornerRadius="6" Padding="10,5" Margin="0,0,0,0">
+                <!-- PC Model -->
+                <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="8" Padding="12,6" Margin="0,0,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xE7F7;" FontFamily="Segoe MDL2 Assets" Foreground="#58a6ff" FontSize="12" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                        <TextBlock Name="txtPCModel" Text="--" Foreground="#58a6ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBlock Text="&#xE7F7;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Name="txtPCModel" Text="--" Foreground="#00f5ff" FontSize="10" FontWeight="Bold" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </WrapPanel>
@@ -345,37 +454,46 @@ function Show-MainWindow {
         <!-- TABS: Tools primero, Apps segundo, Tweaks tercero -->
         <TabControl Grid.Row="2" Background="Transparent" BorderThickness="0" Margin="10">
             
-            <!-- TAB: HERRAMIENTAS (Primero) -->
-            <TabItem Header="Herramientas" Style="{StaticResource ModernTab}">
+            <!-- TAB: HERRAMIENTAS -->
+            <TabItem Header="&#xE90F; Herramientas" Style="{StaticResource ModernTab}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10">
                     <WrapPanel Name="toolsPanel">
                         
                         <!-- Chris Titus WinUtil -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="Chris Titus WinUtil" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Chris Titus WinUtil" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="Optimizacion completa de Windows, debloat y tweaks" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnTitus" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
                         
-                        <!-- ITT - Install Tweaks Tool -->
+                        <!-- ITT -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="IT-Tea Tool (ITT)" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" Foreground="#bf00ff" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="IT-Tea Tool (ITT)" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="Herramienta de limpieza ligera" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnITT" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
                         
-                        <!-- Microsoft Activation -->
+                        <!-- MAS -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="Microsoft Activation (MAS)" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE8D7;" FontFamily="Segoe MDL2 Assets" Foreground="#00ff88" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Microsoft Activation" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="Activacion HWID de Windows y Office" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnMAS" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
@@ -383,9 +501,12 @@ function Show-MainWindow {
                         <!-- Deep Repair -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="Reparacion Profunda" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE90F;" FontFamily="Segoe MDL2 Assets" Foreground="#ff9500" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Reparacion Profunda" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="DISM + SFC + Limpieza de drivers" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnRepair" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
@@ -393,9 +514,12 @@ function Show-MainWindow {
                         <!-- Network Doctor -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="Doctor de Red" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE839;" FontFamily="Segoe MDL2 Assets" Foreground="#00f5ff" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Doctor de Red" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="Resetear DNS, Winsock y TCP/IP" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnNetwork" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
@@ -403,9 +527,12 @@ function Show-MainWindow {
                         <!-- LTSC Recovery -->
                         <Border Style="{StaticResource ToolCard}" Width="280">
                             <StackPanel>
-                                <TextBlock Text="Recuperacion LTSC" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" Foreground="#ff0099" FontSize="20" Margin="0,0,10,0"/>
+                                    <TextBlock Text="Recuperacion LTSC" FontSize="15" FontWeight="Bold" Foreground="#e0f7ff" VerticalAlignment="Center"/>
+                                </StackPanel>
                                 <TextBlock Text="Recuperar Microsoft Store y Media Player" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
+                                           FontSize="11" Foreground="#6b8fa3" TextWrapping="Wrap" Margin="0,0,0,12"/>
                                 <Button Name="btnLTSC" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
@@ -414,8 +541,8 @@ function Show-MainWindow {
                 </ScrollViewer>
             </TabItem>
             
-            <!-- TAB: APLICACIONES (Segundo) -->
-            <TabItem Header="Aplicaciones" Style="{StaticResource ModernTab}">
+            <!-- TAB: APLICACIONES -->
+            <TabItem Header="&#xE71D; Aplicaciones" Style="{StaticResource ModernTab}">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -471,16 +598,16 @@ function Show-MainWindow {
                 </Grid>
             </TabItem>
             
-            <!-- TAB: TWEAKS (Tercero) -->
-            <TabItem Header="Tweaks" Style="{StaticResource ModernTab}">
+            <!-- TAB: TWEAKS -->
+            <TabItem Header="&#xE912; Tweaks" Style="{StaticResource ModernTab}">
                 <ScrollViewer Margin="10">
                     <StackPanel>
-                        <TextBlock Text="Optimizaciones del Sistema (Chris Titus / ITT)" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,15"/>
+                        <TextBlock Text="Optimizaciones del Sistema" FontSize="16" FontWeight="Bold" Foreground="#00f5ff" Margin="0,0,0,15"/>
                         
                         <!-- Rendimiento -->
-                        <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
+                        <Border Background="#111922" BorderBrush="#1e3a5f" BorderThickness="1" CornerRadius="10" Padding="15" Margin="0,0,0,10">
                             <StackPanel>
-                                <TextBlock Text="Rendimiento" FontSize="13" FontWeight="SemiBold" Foreground="#238636" Margin="0,0,0,10"/>
+                                <TextBlock Text="&#x2699; Rendimiento" FontSize="13" FontWeight="SemiBold" Foreground="#00ff88" Margin="0,0,0,10"/>
                                 <CheckBox Name="chkTelemetry" Content="Deshabilitar Telemetria de Windows" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkCortana" Content="Deshabilitar Cortana" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkGameBar" Content="Deshabilitar Xbox GameBar y DVR" Foreground="#c9d1d9" Margin="0,3"/>
@@ -546,10 +673,10 @@ function Show-MainWindow {
             </TabItem>
             
             <!-- TAB: CONFIGURACION -->
-            <TabItem Header="Configuracion" Style="{StaticResource ModernTab}">
+            <TabItem Header="&#xE713; Configuracion" Style="{StaticResource ModernTab}">
                 <ScrollViewer Margin="20">
                     <StackPanel>
-                        <TextBlock Text="Configuracion del Panel" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,20"/>
+                        <TextBlock Text="Configuracion del Panel" FontSize="16" FontWeight="Bold" Foreground="#00f5ff" Margin="0,0,0,20"/>
                         
                         <!-- Info del Panel -->
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="0,0,0,15">
