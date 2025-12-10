@@ -278,47 +278,55 @@ function Show-MainWindow {
         </Border>
         
         <!-- BARRA DE MONITOREO -->
-        <Border Grid.Row="1" Background="#0d1117" Padding="15,10" BorderBrush="#21262d" BorderThickness="0,0,0,1">
+        <Border Grid.Row="1" Background="#0d1117" Padding="12,8" BorderBrush="#21262d" BorderThickness="0,0,0,1">
             <WrapPanel>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                <!-- RAM -->
+                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="RAM: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text="[M]" Foreground="#58a6ff" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
+                        <TextBlock Text="RAM " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                
+                <!-- CPU (Uso + Temp agrupados) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="CPU: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text="[C]" Foreground="#238636" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
+                        <TextBlock Text="CPU " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtCPU" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
+                        <TextBlock Name="txtCPUTemp" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                
+                <!-- GPU (Uso + Temp agrupados) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="GPU: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text="[G]" Foreground="#a371f7" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
+                        <TextBlock Text="GPU " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtGPU" Text="--" Foreground="#a371f7" FontSize="11" FontWeight="Bold"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
+                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                
+                <!-- Disco (Espacio + Salud agrupados) -->
+                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,10,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Temp: " Foreground="#8b949e" FontSize="11"/>
-                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#a371f7" FontSize="11" FontWeight="Bold"/>
-                    </StackPanel>
-                </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Disco: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text="[D]" Foreground="#f0883e" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
+                        <TextBlock Text="Disco " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
-                    </StackPanel>
-                </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Salud: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text=" | " Foreground="#30363d" FontSize="11"/>
                         <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                
+                <!-- BitLocker -->
+                <Border Background="#21262d" CornerRadius="6" Padding="12,6" Margin="0,0,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="BitLocker: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Text="[B]" Foreground="#8b949e" FontSize="11" FontWeight="Bold" Margin="0,0,6,0"/>
+                        <TextBlock Text="BitLocker " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
@@ -615,6 +623,7 @@ function Show-MainWindow {
     # Monitoreo
     $txtRAM = $window.FindName("txtRAM")
     $txtCPU = $window.FindName("txtCPU")
+    $txtCPUTemp = $window.FindName("txtCPUTemp")
     $txtGPU = $window.FindName("txtGPU")
     $txtGPUTemp = $window.FindName("txtGPUTemp")
     $txtDisk = $window.FindName("txtDisk")
@@ -679,7 +688,7 @@ function Show-MainWindow {
             elseif ($ramPercent -gt 70) { $txtRAM.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
             else { $txtRAM.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#58a6ff") }
             
-            # CPU
+            # CPU uso
             $cpuLoad = (Get-CimInstance Win32_Processor).LoadPercentage
             if ($null -eq $cpuLoad) { $cpuLoad = 0 }
             $txtCPU.Text = "$cpuLoad%"
@@ -689,19 +698,53 @@ function Show-MainWindow {
             elseif ($cpuLoad -gt 60) { $txtCPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
             else { $txtCPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") }
             
-            # GPU con temperatura (si disponible)
-            $gpu = Get-CimInstance Win32_VideoController | Select-Object -First 1
-            $gpuName = $gpu.Name
-            if ($gpuName.Length -gt 18) { $gpuName = $gpuName.Substring(0, 15) + "..." }
-            $txtGPU.Text = $gpuName
-            $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7")
-            
-            # Temperatura GPU via WMI
-            $gpuTemp = $null
+            # CPU temperatura
+            $cpuTemp = $null
             try {
                 $thermalZone = Get-CimInstance -Namespace "root/WMI" -ClassName "MSAcpi_ThermalZoneTemperature" -ErrorAction SilentlyContinue | Select-Object -First 1
                 if ($thermalZone) {
-                    $gpuTemp = [math]::Round(($thermalZone.CurrentTemperature - 2732) / 10)
+                    $cpuTemp = [math]::Round(($thermalZone.CurrentTemperature - 2732) / 10)
+                }
+            }
+            catch {}
+            
+            if ($cpuTemp) {
+                $txtCPUTemp.Text = "${cpuTemp}C"
+                if ($cpuTemp -gt 80) { $txtCPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+                elseif ($cpuTemp -gt 65) { $txtCPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+                else { $txtCPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") }
+            }
+            else {
+                $txtCPUTemp.Text = "N/A"
+                $txtCPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#8b949e")
+            }
+            
+            # GPU uso % (via performance counter si disponible)
+            $gpuUsage = $null
+            try {
+                $gpuCounter = Get-Counter '\GPU Engine(*engtype_3D)\Utilization Percentage' -ErrorAction SilentlyContinue
+                if ($gpuCounter) {
+                    $gpuUsage = [math]::Round(($gpuCounter.CounterSamples | Measure-Object -Property CookedValue -Sum).Sum, 0)
+                }
+            }
+            catch {}
+            
+            if ($gpuUsage -ne $null) {
+                $txtGPU.Text = "$gpuUsage%"
+            }
+            else {
+                $txtGPU.Text = "N/A"
+            }
+            $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7")
+            
+            # GPU temperatura (puede ser igual a CPU temp en sistemas integrados)
+            $gpuTemp = $null
+            try {
+                # Intentar obtener temp GPU especifica
+                $videoTemp = Get-CimInstance -Namespace "root/WMI" -ClassName "MSAcpi_ThermalZoneTemperature" -ErrorAction SilentlyContinue | 
+                Select-Object -Last 1
+                if ($videoTemp) {
+                    $gpuTemp = [math]::Round(($videoTemp.CurrentTemperature - 2732) / 10)
                 }
             }
             catch {}
