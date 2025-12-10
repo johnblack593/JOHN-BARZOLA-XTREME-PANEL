@@ -21,13 +21,13 @@
 Abre **PowerShell como Administrador** y ejecuta:
 
 ```powershell
-irm https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel-GUI.ps1 | iex
+irm https://raw.githubusercontent.com/johnblack593/JOHN-BARZOLA-XTREME-PANEL/main/BarzolaCyberPanel-GUI.ps1 | iex
 ```
 
 ### Versión Consola (Clásica)
 
 ```powershell
-irm https://raw.githubusercontent.com/johnblack593/Script/main/BarzolaCyberPanel.ps1 | iex
+irm https://raw.githubusercontent.com/johnblack593/JOHN-BARZOLA-XTREME-PANEL/main/BarzolaCyberPanel.ps1 | iex
 ```
 
 ---
