@@ -452,63 +452,130 @@ function Show-MainWindow {
             <TabItem Header="Tweaks" Style="{StaticResource ModernTab}">
                 <ScrollViewer Margin="10">
                     <StackPanel>
-                        <TextBlock Text="Ajustes del Sistema" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,15"/>
+                        <TextBlock Text="Optimizaciones del Sistema (Chris Titus / ITT)" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,15"/>
                         
+                        <!-- Rendimiento -->
                         <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
                             <StackPanel>
-                                <TextBlock Text="Rendimiento" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
-                                <CheckBox Name="chkTelemetry" Content="Deshabilitar Telemetria" Foreground="#c9d1d9" Margin="0,3"/>
+                                <TextBlock Text="Rendimiento" FontSize="13" FontWeight="SemiBold" Foreground="#238636" Margin="0,0,0,10"/>
+                                <CheckBox Name="chkTelemetry" Content="Deshabilitar Telemetria de Windows" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkCortana" Content="Deshabilitar Cortana" Foreground="#c9d1d9" Margin="0,3"/>
-                                <CheckBox Name="chkGameBar" Content="Deshabilitar Xbox GameBar" Foreground="#c9d1d9" Margin="0,3"/>
-                                <CheckBox Name="chkPerformance" Content="Activar Modo Rendimiento Maximo" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkGameBar" Content="Deshabilitar Xbox GameBar y DVR" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkPerformance" Content="Plan de Energia: Rendimiento Maximo" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkPrefetch" Content="Optimizar Prefetch y Superfetch" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkIndexing" Content="Deshabilitar Indexacion de Busqueda" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkFastStartup" Content="Deshabilitar Inicio Rapido (mejor hibernacion)" Foreground="#c9d1d9" Margin="0,3"/>
                             </StackPanel>
                         </Border>
                         
+                        <!-- Privacidad -->
                         <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
                             <StackPanel>
-                                <TextBlock Text="Privacidad" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
+                                <TextBlock Text="Privacidad" FontSize="13" FontWeight="SemiBold" Foreground="#a371f7" Margin="0,0,0,10"/>
                                 <CheckBox Name="chkActivity" Content="Deshabilitar Historial de Actividad" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkLocation" Content="Deshabilitar Ubicacion" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkAdId" Content="Deshabilitar ID de Publicidad" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkDiagnostics" Content="Minimizar Datos de Diagnostico" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkTailoredExp" Content="Deshabilitar Experiencias Personalizadas" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkClipboard" Content="Deshabilitar Historial de Portapapeles" Foreground="#c9d1d9" Margin="0,3"/>
                             </StackPanel>
                         </Border>
                         
+                        <!-- Visual -->
                         <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
                             <StackPanel>
-                                <TextBlock Text="Visual" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
+                                <TextBlock Text="Visual" FontSize="13" FontWeight="SemiBold" Foreground="#58a6ff" Margin="0,0,0,10"/>
                                 <CheckBox Name="chkDarkMode" Content="Activar Modo Oscuro" Foreground="#c9d1d9" Margin="0,3"/>
                                 <CheckBox Name="chkTransparency" Content="Deshabilitar Efectos de Transparencia" Foreground="#c9d1d9" Margin="0,3"/>
-                                <CheckBox Name="chkAnimations" Content="Deshabilitar Animaciones" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkAnimations" Content="Deshabilitar Animaciones de Ventanas" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkShowExt" Content="Mostrar Extensiones de Archivo" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkHiddenFiles" Content="Mostrar Archivos Ocultos" Foreground="#c9d1d9" Margin="0,3"/>
                             </StackPanel>
                         </Border>
                         
-                        <Button Name="btnApplyTweaks" Content="Aplicar Tweaks Seleccionados" 
-                                Style="{StaticResource ModernButton}" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                        <!-- Servicios -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
+                            <StackPanel>
+                                <TextBlock Text="Servicios (Avanzado)" FontSize="13" FontWeight="SemiBold" Foreground="#f0883e" Margin="0,0,0,10"/>
+                                <CheckBox Name="chkPrintSpooler" Content="Deshabilitar Print Spooler (si no usas impresora)" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkFax" Content="Deshabilitar Servicio de Fax" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkRemoteReg" Content="Deshabilitar Registro Remoto" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkOneDrive" Content="Deshabilitar OneDrive" Foreground="#c9d1d9" Margin="0,3"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <!-- Limpieza -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="15" Margin="0,0,0,10">
+                            <StackPanel>
+                                <TextBlock Text="Limpieza" FontSize="13" FontWeight="SemiBold" Foreground="#f85149" Margin="0,0,0,10"/>
+                                <CheckBox Name="chkTempFiles" Content="Limpiar Archivos Temporales" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkRecycleBin" Content="Vaciar Papelera de Reciclaje" Foreground="#c9d1d9" Margin="0,3"/>
+                                <CheckBox Name="chkPrefetchClean" Content="Limpiar Prefetch" Foreground="#c9d1d9" Margin="0,3"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Name="btnApplyTweaks" Content="Aplicar Tweaks Seleccionados" Style="{StaticResource ModernButton}"/>
+                            <Button Name="btnSelectAllTweaks" Content="Seleccionar Todos" Style="{StaticResource SecondaryButton}" Margin="10,0,0,0"/>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
             
             <!-- TAB: CONFIGURACION -->
             <TabItem Header="Configuracion" Style="{StaticResource ModernTab}">
-                <StackPanel Margin="20">
-                    <TextBlock Text="Acerca del Panel" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,20"/>
-                    
-                    <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="0,0,0,15">
-                        <StackPanel>
-                            <TextBlock Text="John Barzola Xtreme Panel" Foreground="#c9d1d9" FontSize="14"/>
-                            <TextBlock Text="Version 12.0 - CYBER-CORE" Foreground="#8b949e" Margin="0,5,0,0"/>
-                            <TextBlock Text="Desarrollado con PowerShell + WPF" Foreground="#8b949e"/>
-                            <TextBlock Name="txtUserInfo" Text="Usuario actual: --" Foreground="#8b949e" Margin="0,10,0,0"/>
-                        </StackPanel>
-                    </Border>
-                    
-                    <Border Background="#161b22" CornerRadius="8" Padding="20">
-                        <StackPanel>
-                            <TextBlock Text="Enlaces" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
-                            <Button Name="btnGitHub" Content="Ver en GitHub" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
+                <ScrollViewer Margin="20">
+                    <StackPanel>
+                        <TextBlock Text="Configuracion del Panel" FontSize="16" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,20"/>
+                        
+                        <!-- Info del Panel -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Acerca de" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
+                                <TextBlock Text="John Barzola Xtreme Panel" Foreground="#c9d1d9" FontSize="14"/>
+                                <TextBlock Text="Version 12.0 - CYBER-CORE" Foreground="#8b949e" Margin="0,5,0,0"/>
+                                <TextBlock Text="Desarrollado con PowerShell + WPF" Foreground="#8b949e"/>
+                                <TextBlock Name="txtUserInfo" Text="Usuario actual: --" Foreground="#8b949e" Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <!-- Info del Sistema -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                            <StackPanel>
+                                <TextBlock Text="Informacion del Sistema" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
+                                <TextBlock Name="txtSysInfo" Text="Cargando..." Foreground="#8b949e" FontFamily="Consolas" FontSize="11"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <!-- Logs -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Registro de Actividades" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9"/>
+                                    <Button Name="btnClearLogs" Content="Limpiar" Style="{StaticResource SecondaryButton}" 
+                                            Margin="15,0,0,0" Padding="10,3" FontSize="10"/>
+                                </StackPanel>
+                                <Border Background="#0d1117" CornerRadius="5" Padding="10" MaxHeight="200">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <TextBlock Name="txtLogs" Text="[Inicio de sesion]" Foreground="#8b949e" 
+                                                   FontFamily="Consolas" FontSize="10" TextWrapping="Wrap"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        
+                        <!-- Enlaces -->
+                        <Border Background="#161b22" CornerRadius="8" Padding="20">
+                            <StackPanel>
+                                <TextBlock Text="Enlaces" FontSize="13" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btnGitHub" Content="Ver en GitHub" Style="{StaticResource SecondaryButton}"/>
+                                    <Button Name="btnExportLogs" Content="Exportar Logs" Style="{StaticResource SecondaryButton}" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
         
@@ -560,8 +627,15 @@ function Show-MainWindow {
     $btnHardware = $window.FindName("btnHardware")
     $btnInstallApps = $window.FindName("btnInstallApps")
     $btnApplyTweaks = $window.FindName("btnApplyTweaks")
+    $btnSelectAllTweaks = $window.FindName("btnSelectAllTweaks")
     $btnGitHub = $window.FindName("btnGitHub")
     $btnExit = $window.FindName("btnExit")
+    
+    # Logs y configuracion
+    $txtLogs = $window.FindName("txtLogs")
+    $txtSysInfo = $window.FindName("txtSysInfo")
+    $btnClearLogs = $window.FindName("btnClearLogs")
+    $btnExportLogs = $window.FindName("btnExportLogs")
     
     # Categoria buttons
     $btnCatAll = $window.FindName("btnCatAll")
@@ -628,6 +702,46 @@ function Show-MainWindow {
     
     # Actualizar monitoreo inicial
     Update-SystemMonitor
+    
+    # --- SISTEMA DE LOGS ---
+    $script:LogEntries = @()
+    
+    function Add-Log {
+        param([string]$Action)
+        $time = Get-Date -Format "HH:mm:ss"
+        $entry = "[$time] $Action"
+        $script:LogEntries += $entry
+        $txtLogs.Text = ($script:LogEntries -join "`n")
+    }
+    
+    # Log inicial
+    Add-Log "Sesion iniciada por $script:AuthenticatedUser"
+    
+    # System Info
+    $cpu = (Get-CimInstance Win32_Processor).Name
+    $ramTotal = [math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB, 1)
+    $os = (Get-CimInstance Win32_OperatingSystem).Caption
+    $pcName = $env:COMPUTERNAME
+    $txtSysInfo.Text = "PC: $pcName`nOS: $os`nCPU: $cpu`nRAM: $ramTotal GB"
+    
+    # Botones de logs
+    $btnClearLogs.Add_Click({
+            $script:LogEntries = @()
+            $txtLogs.Text = "[Logs limpiados]"
+            Add-Log "Logs limpiados"
+        })
+    
+    $btnExportLogs.Add_Click({
+            $logPath = "$env:USERPROFILE\Desktop\CyberCore_Logs_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+            $header = "=== CYBER CORE - Registro de Actividades ===`n"
+            $header += "Usuario: $script:AuthenticatedUser`n"
+            $header += "Fecha: $(Get-Date)`n"
+            $header += "PC: $env:COMPUTERNAME`n"
+            $header += "============================================`n`n"
+            ($header + ($script:LogEntries -join "`n")) | Out-File $logPath -Encoding UTF8
+            Add-Log "Logs exportados a: $logPath"
+            [System.Windows.MessageBox]::Show("Logs exportados a:`n$logPath", "Exportar", "OK", "Information")
+        })
     
     # --- ALMACENAR CHECKBOXES ---
     $script:appCheckboxes = @{}
@@ -868,14 +982,31 @@ $disks
         })
     
     $btnApplyTweaks.Add_Click({
-            [System.Windows.MessageBox]::Show("Funcionalidad de tweaks proximamente.", "Info", "OK", "Information")
+            Add-Log "Aplicando tweaks seleccionados..."
+            [System.Windows.MessageBox]::Show("Funcionalidad completa de tweaks en desarrollo.`nPor ahora, usa Chris Titus WinUtil para aplicar optimizaciones avanzadas.", "Info", "OK", "Information")
+        })
+    
+    $btnSelectAllTweaks.Add_Click({
+            # Seleccionar todos los checkboxes de tweaks
+            $tweakCheckboxes = @("chkTelemetry", "chkCortana", "chkGameBar", "chkPerformance", "chkPrefetch", 
+                "chkIndexing", "chkFastStartup", "chkActivity", "chkLocation", "chkAdId",
+                "chkDiagnostics", "chkTailoredExp", "chkClipboard", "chkDarkMode", "chkTransparency",
+                "chkAnimations", "chkShowExt", "chkHiddenFiles", "chkPrintSpooler", "chkFax",
+                "chkRemoteReg", "chkOneDrive", "chkTempFiles", "chkRecycleBin", "chkPrefetchClean")
+            foreach ($name in $tweakCheckboxes) {
+                $cb = $window.FindName($name)
+                if ($cb) { $cb.IsChecked = $true }
+            }
+            Add-Log "Todos los tweaks seleccionados"
         })
     
     $btnGitHub.Add_Click({
+            Add-Log "Abriendo GitHub"
             Start-Process "https://github.com/johnblack593/Script"
         })
     
     $btnExit.Add_Click({
+            Add-Log "Sesion cerrada"
             $window.Close()
         })
     
