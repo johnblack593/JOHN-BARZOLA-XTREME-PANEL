@@ -5,8 +5,6 @@
 # Usage: irm https://raw.githubusercontent.com/johnblack593/Script/feature/wpf-gui/BarzolaCyberPanel-GUI.ps1 | iex
 # =========================================================
 
-#Requires -RunAsAdministrator
-
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Windows.Forms
 
@@ -17,42 +15,42 @@ $script:Author = "John Barzola"
 # --- DEFINICION DE APLICACIONES ---
 $script:Apps = @{
     "Browsers"      = @(
-        @{Name = "Google Chrome"; Id = "Google.Chrome"; Icon = "🌐" },
-        @{Name = "Mozilla Firefox"; Id = "Mozilla.Firefox"; Icon = "🦊" },
-        @{Name = "Brave Browser"; Id = "Brave.Brave"; Icon = "🦁" },
-        @{Name = "Microsoft Edge"; Id = "Microsoft.Edge"; Icon = "🔷" },
-        @{Name = "Opera Browser"; Id = "Opera.Opera"; Icon = "🔴" }
+        @{Name = "Google Chrome"; Id = "Google.Chrome" },
+        @{Name = "Mozilla Firefox"; Id = "Mozilla.Firefox" },
+        @{Name = "Brave Browser"; Id = "Brave.Brave" },
+        @{Name = "Microsoft Edge"; Id = "Microsoft.Edge" },
+        @{Name = "Opera Browser"; Id = "Opera.Opera" }
     )
     "Media"         = @(
-        @{Name = "VLC Media Player"; Id = "VideoLAN.VLC"; Icon = "🎬" },
-        @{Name = "AIMP"; Id = "AIMP.AIMP"; Icon = "🎵" },
-        @{Name = "Spotify"; Id = "Spotify.Spotify"; Icon = "🎧" },
-        @{Name = "K-Lite Codec Pack"; Id = "CodecGuide.K-LiteCodecPack.Mega"; Icon = "📀" }
+        @{Name = "VLC Media Player"; Id = "VideoLAN.VLC" },
+        @{Name = "AIMP"; Id = "AIMP.AIMP" },
+        @{Name = "Spotify"; Id = "Spotify.Spotify" },
+        @{Name = "K-Lite Codec Pack"; Id = "CodecGuide.K-LiteCodecPack.Mega" }
     )
     "Utilities"     = @(
-        @{Name = "7-Zip"; Id = "7zip.7zip"; Icon = "📦" },
-        @{Name = "WinRAR"; Id = "RARLab.WinRAR"; Icon = "📁" },
-        @{Name = "qBittorrent"; Id = "qBittorrent.qBittorrent"; Icon = "⬇️" },
-        @{Name = "Everything Search"; Id = "voidtools.Everything"; Icon = "🔍" }
+        @{Name = "7-Zip"; Id = "7zip.7zip" },
+        @{Name = "WinRAR"; Id = "RARLab.WinRAR" },
+        @{Name = "qBittorrent"; Id = "qBittorrent.qBittorrent" },
+        @{Name = "Everything Search"; Id = "voidtools.Everything" }
     )
     "Development"   = @(
-        @{Name = "Visual Studio Code"; Id = "Microsoft.VisualStudioCode"; Icon = "💻" },
-        @{Name = "Git"; Id = "Git.Git"; Icon = "🔀" },
-        @{Name = "Python 3"; Id = "Python.Python.3.12"; Icon = "🐍" },
-        @{Name = "Node.js LTS"; Id = "OpenJS.NodeJS.LTS"; Icon = "💚" },
-        @{Name = "Docker Desktop"; Id = "Docker.DockerDesktop"; Icon = "🐳" }
+        @{Name = "Visual Studio Code"; Id = "Microsoft.VisualStudioCode" },
+        @{Name = "Git"; Id = "Git.Git" },
+        @{Name = "Python 3"; Id = "Python.Python.3.12" },
+        @{Name = "Node.js LTS"; Id = "OpenJS.NodeJS.LTS" },
+        @{Name = "Docker Desktop"; Id = "Docker.DockerDesktop" }
     )
     "Communication" = @(
-        @{Name = "Discord"; Id = "Discord.Discord"; Icon = "💬" },
-        @{Name = "Telegram"; Id = "Telegram.TelegramDesktop"; Icon = "✈️" },
-        @{Name = "Zoom"; Id = "Zoom.Zoom"; Icon = "📹" },
-        @{Name = "Microsoft Teams"; Id = "Microsoft.Teams"; Icon = "👥" }
+        @{Name = "Discord"; Id = "Discord.Discord" },
+        @{Name = "Telegram"; Id = "Telegram.TelegramDesktop" },
+        @{Name = "Zoom"; Id = "Zoom.Zoom" },
+        @{Name = "Microsoft Teams"; Id = "Microsoft.Teams" }
     )
     "Runtimes"      = @(
-        @{Name = "DirectX Runtime"; Id = "Microsoft.DirectX"; Icon = "🎮" },
-        @{Name = ".NET Runtime 8"; Id = "Microsoft.DotNet.DesktopRuntime.8"; Icon = "⚙️" },
-        @{Name = "VC++ 2015-2022"; Id = "Microsoft.VCRedist.2015+.x64"; Icon = "🔧" },
-        @{Name = "Java JDK 21"; Id = "Oracle.JDK.21"; Icon = "☕" }
+        @{Name = "DirectX Runtime"; Id = "Microsoft.DirectX" },
+        @{Name = ".NET Runtime 8"; Id = "Microsoft.DotNet.DesktopRuntime.8" },
+        @{Name = "VC++ 2015-2022"; Id = "Microsoft.VCRedist.2015+.x64" },
+        @{Name = "Java JDK 21"; Id = "Oracle.JDK.21" }
     )
 }
 
@@ -68,7 +66,6 @@ $script:Apps = @{
     FontFamily="Segoe UI">
     
     <Window.Resources>
-        <!-- Button Style -->
         <Style x:Key="ModernButton" TargetType="Button">
             <Setter Property="Background" Value="#238636"/>
             <Setter Property="Foreground" Value="White"/>
@@ -92,7 +89,6 @@ $script:Apps = @{
             </Setter>
         </Style>
         
-        <!-- Secondary Button Style -->
         <Style x:Key="SecondaryButton" TargetType="Button">
             <Setter Property="Background" Value="#21262d"/>
             <Setter Property="Foreground" Value="#c9d1d9"/>
@@ -119,7 +115,6 @@ $script:Apps = @{
             </Setter>
         </Style>
         
-        <!-- Tab Style -->
         <Style x:Key="ModernTab" TargetType="TabItem">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#8b949e"/>
@@ -145,7 +140,6 @@ $script:Apps = @{
             </Setter>
         </Style>
         
-        <!-- Checkbox Style -->
         <Style x:Key="AppCheckbox" TargetType="CheckBox">
             <Setter Property="Foreground" Value="#c9d1d9"/>
             <Setter Property="Margin" Value="5"/>
@@ -160,7 +154,6 @@ $script:Apps = @{
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <!-- HEADER -->
         <Border Grid.Row="0" Background="#161b22" Padding="20">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -183,18 +176,15 @@ $script:Apps = @{
             </Grid>
         </Border>
         
-        <!-- MAIN CONTENT -->
         <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0" Margin="10">
             
-            <!-- TAB: APPS -->
-            <TabItem Header="📦 Apps" Style="{StaticResource ModernTab}">
+            <TabItem Header="Apps" Style="{StaticResource ModernTab}">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <!-- Category Buttons -->
                     <WrapPanel Grid.Row="0" Margin="0,0,0,15">
                         <Button Name="btnAll" Content="All" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
                         <Button Name="btnBrowsers" Content="Browsers" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
@@ -205,17 +195,13 @@ $script:Apps = @{
                         <Button Name="btnRuntimes" Content="Runtimes" Style="{StaticResource SecondaryButton}" Margin="0,0,5,5"/>
                     </WrapPanel>
                     
-                    <!-- Apps Grid -->
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <WrapPanel Name="appsPanel">
-                            <!-- Apps will be added dynamically -->
-                        </WrapPanel>
+                        <WrapPanel Name="appsPanel"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
             
-            <!-- TAB: TWEAKS -->
-            <TabItem Header="⚙️ Tweaks" Style="{StaticResource ModernTab}">
+            <TabItem Header="Tweaks" Style="{StaticResource ModernTab}">
                 <ScrollViewer Margin="10">
                     <StackPanel>
                         <TextBlock Text="System Tweaks" FontSize="18" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,15"/>
@@ -254,13 +240,12 @@ $script:Apps = @{
                 </ScrollViewer>
             </TabItem>
             
-            <!-- TAB: TOOLS -->
-            <TabItem Header="🔧 Tools" Style="{StaticResource ModernTab}">
+            <TabItem Header="Tools" Style="{StaticResource ModernTab}">
                 <ScrollViewer Margin="10">
                     <WrapPanel>
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="5" Width="280">
                             <StackPanel>
-                                <TextBlock Text="🛠️ Chris Titus WinUtil" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <TextBlock Text="Chris Titus WinUtil" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
                                 <TextBlock Text="Complete Windows optimization toolkit" FontSize="12" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,15"/>
                                 <Button Name="btnTitus" Content="Launch" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
@@ -268,7 +253,7 @@ $script:Apps = @{
                         
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="5" Width="280">
                             <StackPanel>
-                                <TextBlock Text="🔑 Microsoft Activation" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <TextBlock Text="Microsoft Activation" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
                                 <TextBlock Text="HWID-based Windows/Office activation" FontSize="12" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,15"/>
                                 <Button Name="btnMAS" Content="Launch" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
@@ -276,7 +261,7 @@ $script:Apps = @{
                         
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="5" Width="280">
                             <StackPanel>
-                                <TextBlock Text="🏥 Deep Repair" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <TextBlock Text="Deep Repair" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
                                 <TextBlock Text="DISM + SFC + Driver cleanup" FontSize="12" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,15"/>
                                 <Button Name="btnRepair" Content="Run" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
@@ -284,7 +269,7 @@ $script:Apps = @{
                         
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="5" Width="280">
                             <StackPanel>
-                                <TextBlock Text="🌐 Network Doctor" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <TextBlock Text="Network Doctor" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
                                 <TextBlock Text="Reset DNS, Winsock and TCP/IP" FontSize="12" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,15"/>
                                 <Button Name="btnNetwork" Content="Run" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
@@ -292,7 +277,7 @@ $script:Apps = @{
                         
                         <Border Background="#161b22" CornerRadius="8" Padding="20" Margin="5" Width="280">
                             <StackPanel>
-                                <TextBlock Text="💻 Hardware Info" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
+                                <TextBlock Text="Hardware Info" FontSize="16" FontWeight="Bold" Foreground="#c9d1d9"/>
                                 <TextBlock Text="View CPU, RAM, GPU and Storage details" FontSize="12" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,15"/>
                                 <Button Name="btnHardware" Content="View" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
@@ -301,8 +286,7 @@ $script:Apps = @{
                 </ScrollViewer>
             </TabItem>
             
-            <!-- TAB: SETTINGS -->
-            <TabItem Header="⚙️ Settings" Style="{StaticResource ModernTab}">
+            <TabItem Header="Settings" Style="{StaticResource ModernTab}">
                 <StackPanel Margin="20">
                     <TextBlock Text="Panel Settings" FontSize="18" FontWeight="Bold" Foreground="#58a6ff" Margin="0,0,0,20"/>
                     
@@ -318,7 +302,7 @@ $script:Apps = @{
                     <Border Background="#161b22" CornerRadius="8" Padding="20">
                         <StackPanel>
                             <TextBlock Text="Links" FontSize="14" FontWeight="SemiBold" Foreground="#c9d1d9" Margin="0,0,0,10"/>
-                            <Button Name="btnGitHub" Content="📂 View on GitHub" Style="{StaticResource SecondaryButton}" 
+                            <Button Name="btnGitHub" Content="View on GitHub" Style="{StaticResource SecondaryButton}" 
                                     HorizontalAlignment="Left" Margin="0,0,0,5"/>
                         </StackPanel>
                     </Border>
@@ -326,7 +310,6 @@ $script:Apps = @{
             </TabItem>
         </TabControl>
         
-        <!-- FOOTER -->
         <Border Grid.Row="2" Background="#161b22" Padding="15">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -356,7 +339,6 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 
 # --- OBTENER CONTROLES ---
 $txtUser = $window.FindName("txtUser")
-$txtStatus = $window.FindName("txtStatus")
 $txtProgress = $window.FindName("txtProgress")
 $progressBar = $window.FindName("progressBar")
 $appsPanel = $window.FindName("appsPanel")
@@ -405,7 +387,7 @@ function Add-AppCard {
     $checkbox.Tag = $App.Id
     
     $label = New-Object System.Windows.Controls.TextBlock
-    $label.Text = "$($App.Icon) $($App.Name)"
+    $label.Text = $App.Name
     $label.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#c9d1d9")
     $label.Margin = [System.Windows.Thickness]::new(8, 0, 0, 0)
     $label.VerticalAlignment = "Center"
@@ -421,7 +403,7 @@ function Add-AppCard {
 }
 
 # --- FUNCION: CARGAR APPS ---
-function Load-Apps {
+function Initialize-AppsList {
     param([string]$Filter = "All")
     
     $appsPanel.Children.Clear()
@@ -437,16 +419,16 @@ function Load-Apps {
 }
 
 # --- CARGAR TODAS LAS APPS INICIALMENTE ---
-Load-Apps -Filter "All"
+Initialize-AppsList -Filter "All"
 
 # --- EVENTOS DE CATEGORIA ---
-$btnAll.Add_Click({ Load-Apps -Filter "All" })
-$btnBrowsers.Add_Click({ Load-Apps -Filter "Browsers" })
-$btnMedia.Add_Click({ Load-Apps -Filter "Media" })
-$btnUtilities.Add_Click({ Load-Apps -Filter "Utilities" })
-$btnDev.Add_Click({ Load-Apps -Filter "Development" })
-$btnComm.Add_Click({ Load-Apps -Filter "Communication" })
-$btnRuntimes.Add_Click({ Load-Apps -Filter "Runtimes" })
+$btnAll.Add_Click({ Initialize-AppsList -Filter "All" })
+$btnBrowsers.Add_Click({ Initialize-AppsList -Filter "Browsers" })
+$btnMedia.Add_Click({ Initialize-AppsList -Filter "Media" })
+$btnUtilities.Add_Click({ Initialize-AppsList -Filter "Utilities" })
+$btnDev.Add_Click({ Initialize-AppsList -Filter "Development" })
+$btnComm.Add_Click({ Initialize-AppsList -Filter "Communication" })
+$btnRuntimes.Add_Click({ Initialize-AppsList -Filter "Runtimes" })
 
 # --- FUNCION: INSTALAR APPS ---
 function Install-SelectedApps {
