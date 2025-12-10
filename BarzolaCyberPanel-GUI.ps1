@@ -1355,28 +1355,6 @@ function Show-MainWindow {
             }
         })
     
-    $btnHardware.Add_Click({
-            Set-Status "Obteniendo informacion del hardware..."
-            $cpu = (Get-CimInstance Win32_Processor).Name
-            $ramTotal = [math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB, 2)
-            $gpu = (Get-CimInstance Win32_VideoController).Name -join "`n"
-            $disks = (Get-CimInstance Win32_DiskDrive | Where-Object { $_.MediaType -like "*fixed*" }).Model -join "`n"
-        
-            $info = @"
-CPU: $cpu
-
-RAM Total: $ramTotal GB
-
-GPU:
-$gpu
-
-Discos:
-$disks
-"@
-            [System.Windows.MessageBox]::Show($info, "Informacion del Hardware", "OK", "Information")
-            Set-Status "Listo"
-        })
-    
     $btnApplyTweaks.Add_Click({
             Add-Log "Aplicando tweaks seleccionados..."
             [System.Windows.MessageBox]::Show("Funcionalidad completa de tweaks en desarrollo.`nPor ahora, usa Chris Titus WinUtil para aplicar optimizaciones avanzadas.", "Info", "OK", "Information")
