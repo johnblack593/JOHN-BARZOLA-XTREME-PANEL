@@ -78,7 +78,7 @@ function Show-LoginWindow {
 <Window 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="CYBER CORE - Acceso Seguro" 
+    Title="Chris Extreme Panel - Acceso Seguro" 
     Height="420" Width="400"
     WindowStartupLocation="CenterScreen"
     Background="#0d1117"
@@ -104,9 +104,9 @@ function Show-LoginWindow {
             </Border>
             
             <StackPanel Grid.Row="1" Margin="30" VerticalAlignment="Center">
-                <TextBlock Text="CYBER CORE" FontSize="24" FontWeight="Bold" 
+                <TextBlock Text="CHRIS EXTREME" FontSize="24" FontWeight="Bold" 
                            Foreground="#58a6ff" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                <TextBlock Text="John Barzola Xtreme Panel" FontSize="12" 
+                <TextBlock Text="PANEL" FontSize="14" FontWeight="Bold"
                            Foreground="#8b949e" HorizontalAlignment="Center" Margin="0,0,0,30"/>
                 
                 <TextBlock Text="Usuario:" Foreground="#c9d1d9" Margin="0,0,0,5"/>
@@ -265,7 +265,7 @@ function Show-MainWindow {
                 </Grid.ColumnDefinitions>
                 
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="CYBER CORE" FontSize="22" FontWeight="Bold" Foreground="#58a6ff"/>
+                    <TextBlock Text="CHRIS EXTREME PANEL" FontSize="22" FontWeight="Bold" Foreground="#58a6ff"/>
                     <TextBlock Name="txtWelcome" Text="Bienvenido, Usuario" FontSize="11" Foreground="#8b949e"/>
                 </StackPanel>
                 
@@ -280,31 +280,43 @@ function Show-MainWindow {
         <!-- BARRA DE MONITOREO -->
         <Border Grid.Row="1" Background="#0d1117" Padding="15,10" BorderBrush="#21262d" BorderThickness="0,0,0,1">
             <WrapPanel>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="RAM: " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtRAM" Text="--" Foreground="#58a6ff" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="CPU: " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtCPU" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="GPU: " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtGPU" Text="--" Foreground="#a371f7" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Temp: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Name="txtGPUTemp" Text="--" Foreground="#a371f7" FontSize="11" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Disco: " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtDisk" Text="--" Foreground="#f0883e" FontSize="11" FontWeight="Bold"/>
                     </StackPanel>
                 </Border>
-                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,10,0">
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Salud: " Foreground="#8b949e" FontSize="11"/>
+                        <TextBlock Name="txtDiskHealth" Text="--" Foreground="#238636" FontSize="11" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#21262d" CornerRadius="5" Padding="10,5" Margin="0,0,8,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="BitLocker: " Foreground="#8b949e" FontSize="11"/>
                         <TextBlock Name="txtBitLocker" Text="--" Foreground="#c9d1d9" FontSize="11" FontWeight="Bold"/>
@@ -378,16 +390,6 @@ function Show-MainWindow {
                                 <TextBlock Text="Recuperar Microsoft Store y Media Player" 
                                            FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
                                 <Button Name="btnLTSC" Content="Ejecutar" Style="{StaticResource ModernButton}"/>
-                            </StackPanel>
-                        </Border>
-                        
-                        <!-- Hardware Info -->
-                        <Border Style="{StaticResource ToolCard}" Width="280">
-                            <StackPanel>
-                                <TextBlock Text="Info del Hardware" FontSize="15" FontWeight="Bold" Foreground="#c9d1d9"/>
-                                <TextBlock Text="Ver detalles de CPU, RAM, GPU y disco" 
-                                           FontSize="11" Foreground="#8b949e" TextWrapping="Wrap" Margin="0,5,0,12"/>
-                                <Button Name="btnHardware" Content="Ver Info" Style="{StaticResource ModernButton}"/>
                             </StackPanel>
                         </Border>
                         
@@ -614,7 +616,9 @@ function Show-MainWindow {
     $txtRAM = $window.FindName("txtRAM")
     $txtCPU = $window.FindName("txtCPU")
     $txtGPU = $window.FindName("txtGPU")
+    $txtGPUTemp = $window.FindName("txtGPUTemp")
     $txtDisk = $window.FindName("txtDisk")
+    $txtDiskHealth = $window.FindName("txtDiskHealth")
     $txtBitLocker = $window.FindName("txtBitLocker")
     
     # Botones
@@ -624,7 +628,6 @@ function Show-MainWindow {
     $btnRepair = $window.FindName("btnRepair")
     $btnNetwork = $window.FindName("btnNetwork")
     $btnLTSC = $window.FindName("btnLTSC")
-    $btnHardware = $window.FindName("btnHardware")
     $btnInstallApps = $window.FindName("btnInstallApps")
     $btnApplyTweaks = $window.FindName("btnApplyTweaks")
     $btnSelectAllTweaks = $window.FindName("btnSelectAllTweaks")
@@ -689,12 +692,13 @@ function Show-MainWindow {
             # GPU con temperatura (si disponible)
             $gpu = Get-CimInstance Win32_VideoController | Select-Object -First 1
             $gpuName = $gpu.Name
-            if ($gpuName.Length -gt 20) { $gpuName = $gpuName.Substring(0, 17) + "..." }
+            if ($gpuName.Length -gt 18) { $gpuName = $gpuName.Substring(0, 15) + "..." }
+            $txtGPU.Text = $gpuName
+            $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7")
             
-            # Intentar obtener temperatura GPU via WMI (NVIDIA/AMD si disponible)
+            # Temperatura GPU via WMI
             $gpuTemp = $null
             try {
-                # Intentar con Win32_PerfFormattedData para GPUs soportadas
                 $thermalZone = Get-CimInstance -Namespace "root/WMI" -ClassName "MSAcpi_ThermalZoneTemperature" -ErrorAction SilentlyContinue | Select-Object -First 1
                 if ($thermalZone) {
                     $gpuTemp = [math]::Round(($thermalZone.CurrentTemperature - 2732) / 10)
@@ -703,42 +707,56 @@ function Show-MainWindow {
             catch {}
             
             if ($gpuTemp) {
-                $txtGPU.Text = "$gpuName ${gpuTemp}C"
-                # Color segun temperatura
-                if ($gpuTemp -gt 80) { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
-                elseif ($gpuTemp -gt 65) { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
-                else { $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7") }
+                $txtGPUTemp.Text = "${gpuTemp}C"
+                if ($gpuTemp -gt 80) { $txtGPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+                elseif ($gpuTemp -gt 65) { $txtGPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+                else { $txtGPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") }
             }
             else {
-                $txtGPU.Text = $gpuName
-                $txtGPU.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#a371f7")
+                $txtGPUTemp.Text = "N/A"
+                $txtGPUTemp.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#8b949e")
             }
             
-            # Disco con salud SMART
+            # Disco
             $disk = Get-CimInstance Win32_LogicalDisk -Filter "DeviceID='C:'"
             $freeGB = [math]::Round($disk.FreeSpace / 1GB)
             $totalGB = [math]::Round($disk.Size / 1GB)
             $usedPercent = [math]::Round((($totalGB - $freeGB) / $totalGB) * 100)
+            $txtDisk.Text = "$freeGB/$totalGB GB"
             
-            # Intentar obtener estado SMART
-            $smartStatus = "OK"
+            if ($usedPercent -gt 90) { $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") }
+            elseif ($usedPercent -gt 75) { $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") }
+            else { $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") }
+            
+            # Salud del disco SMART
+            $healthStatus = "Saludable"
+            $healthPercent = 100
             try {
                 $diskDrive = Get-CimInstance Win32_DiskDrive | Where-Object { $_.DeviceID -like "*PHYSICALDRIVE0*" } | Select-Object -First 1
-                if ($diskDrive.Status -ne "OK") { $smartStatus = "Alerta" }
+                if ($diskDrive) {
+                    # Intentar obtener SMART via CIM (si disponible)
+                    $smartData = Get-CimInstance -Namespace "root\wmi" -ClassName "MSStorageDriver_FailurePredictStatus" -ErrorAction SilentlyContinue | Select-Object -First 1
+                    if ($smartData -and $smartData.PredictFailure) {
+                        $healthStatus = "Critico"
+                        $healthPercent = 0
+                    }
+                    elseif ($diskDrive.Status -ne "OK") {
+                        $healthStatus = "Precaucion"
+                        $healthPercent = 50
+                    }
+                }
             }
             catch {}
             
-            $txtDisk.Text = "$freeGB GB libre ($smartStatus)"
-            
-            # Color disco
-            if ($smartStatus -ne "OK" -or $usedPercent -gt 90) { 
-                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") 
+            $txtDiskHealth.Text = "$healthStatus ($healthPercent%)"
+            if ($healthStatus -eq "Critico") { 
+                $txtDiskHealth.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f85149") 
             }
-            elseif ($usedPercent -gt 75) { 
-                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") 
+            elseif ($healthStatus -eq "Precaucion") { 
+                $txtDiskHealth.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") 
             }
             else { 
-                $txtDisk.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#f0883e") 
+                $txtDiskHealth.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#238636") 
             }
             
             # BitLocker
@@ -801,8 +819,8 @@ function Show-MainWindow {
         })
     
     $btnExportLogs.Add_Click({
-            $logPath = "$env:USERPROFILE\Desktop\CyberCore_Logs_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
-            $header = "=== CYBER CORE - Registro de Actividades ===`n"
+            $logPath = "$env:USERPROFILE\Desktop\ChrisExtreme_Logs_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+            $header = "=== CHRIS EXTREME PANEL - Registro de Actividades ===`n"
             $header += "Usuario: $script:AuthenticatedUser`n"
             $header += "Fecha: $(Get-Date)`n"
             $header += "PC: $env:COMPUTERNAME`n"
@@ -887,26 +905,33 @@ function Show-MainWindow {
             foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
         })
     
-    # Pack Esencial: Chrome, AIMP, VLC, qBittorrent, Gaming Libs, WinRAR
+    # Pack Esencial: VLC, AIMP, Chrome, VC++ todas, WinRAR, XNA, DirectX, .NET 8
     $btnPresetEssential.Add_Click({
             foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
-            $essentialIds = @("Google.Chrome", "AIMP.AIMP", "VideoLAN.VLC", "qBittorrent.qBittorrent", 
-                "RARLab.WinRAR", "Microsoft.DirectX", "Microsoft.XNARedist", 
-                "Microsoft.DotNet.DesktopRuntime.8", "Microsoft.VCRedist.2015+.x64")
+            $essentialIds = @(
+                "VideoLAN.VLC", "AIMP.AIMP", "Google.Chrome", "RARLab.WinRAR",
+                "Microsoft.DirectX", "Microsoft.XNARedist", "Microsoft.DotNet.DesktopRuntime.8",
+                "Microsoft.VCRedist.2005.x64", "Microsoft.VCRedist.2008.x64", 
+                "Microsoft.VCRedist.2010.x64", "Microsoft.VCRedist.2012.x64",
+                "Microsoft.VCRedist.2013.x64", "Microsoft.VCRedist.2015+.x64"
+            )
             foreach ($id in $essentialIds) {
                 if ($script:appCheckboxes.ContainsKey($id)) { $script:appCheckboxes[$id].IsChecked = $true }
             }
+            Add-Log "Pack Esencial seleccionado"
             Set-Status "Pack Esencial seleccionado"
         })
     
-    # Pack Programador: VS Code, Git, Python, Node.js, Docker, etc
+    # Pack Programador: Todos los apps de la categoria Desarrollo
     $btnPresetDev.Add_Click({
             foreach ($cb in $script:appCheckboxes.Values) { $cb.IsChecked = $false }
-            $devIds = @("Microsoft.VisualStudioCode", "Git.Git", "Python.Python.3.12", 
-                "OpenJS.NodeJS.LTS", "Docker.DockerDesktop", "Postman.Postman")
-            foreach ($id in $devIds) {
-                if ($script:appCheckboxes.ContainsKey($id)) { $script:appCheckboxes[$id].IsChecked = $true }
+            # Seleccionar todos los de Desarrollo
+            foreach ($app in $script:AppCategories["Desarrollo"]) {
+                if ($script:appCheckboxes.ContainsKey($app.Id)) { 
+                    $script:appCheckboxes[$app.Id].IsChecked = $true 
+                }
             }
+            Add-Log "Pack Programador seleccionado"
             Set-Status "Pack Programador seleccionado"
         })
     
